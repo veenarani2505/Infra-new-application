@@ -1,0 +1,147 @@
+<ion-header class="ion-no-border">
+  
+    <ion-toolbar color="primary">
+      <ion-title class="title_label">{{companyName}}</ion-title>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <div slot="end" >
+          <ion-text class="project_label">{{userRole}}</ion-text><br>
+          <ion-text class="project_label">{{projectname}}</ion-text>
+        </div>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row style="margin-top: 20px; ">
+    <ion-col col-12>
+      <ion-slides                   
+        class="slider-images"
+        autoplay="3000"
+        loop="true"
+        speed="500"
+        pager="true"
+        [options]="slideOptions"
+        #slider
+        (ionSlidesDidLoad)="slidesDidLoad(slider)">
+        
+      
+        <ion-slide >
+          <img src="../../../assets/banner4.png" class="banner-img"  />
+        </ion-slide>
+
+        <ion-slide>
+          <img src="../../../assets/banner1.png" class="banner-img"  />
+        </ion-slide>
+
+        <ion-slide>
+          <img src="../../../assets/banne.jpg" class="banner-img"  />
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="menu-row" style="margin-top: 60px;" *ngIf="companyId == 2">
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <ion-col size="3.8" class="menu-col" 
+    style="justify-content: center;" (click)="onMaterialTransactions()" >
+      <div  style="justify-content: center; padding-left: 24px;">
+        <img src="../../../assets/invoice.png"   height="45px" width="45px" style="justify-items: center;" >
+        <ion-label style="color: black;font-size: 12px;">Material</ion-label>
+    </div>
+    </ion-col>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; padding: 8px; " (click)="onMaterialReports()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/reports.jpeg"  height="45px" width="45px" style="margin-left: 20px;">
+      <ion-label style="color: black;font-size: 12px; margin-left: 20px;">Reports</ion-label>
+    </div>
+    </ion-col>  
+  </ion-row>
+
+<div *ngIf="companyId != 2">
+
+  <ion-row class="menu-row" style="margin-top: 60px;">
+    <ion-col size="3.8" class="menu-col" 
+    style="justify-content: center;" (click)="onMaterialTransactions()" >
+      <div  style="justify-content: center; padding-left: 24px;">
+        <img src="../../../assets/invoice.png"   height="45px" width="45px" style="justify-items: center;" >
+        <ion-label style="color: black;font-size: 12px;">Material</ion-label>
+    </div>
+    </ion-col>
+    &nbsp;  
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center;" (click)="onDataCollection()">
+      <div  style="justify-content: center;" >
+        <img src="../../../assets/imageColl.png"  height="45px" width="45px"
+        style="justify-self: center; margin-left: 21px;"><br>
+      <ion-label style="color: black;font-size:12px;">Image collection</ion-label>
+      <!-- <ion-label style="color: black;font-size:12px; padding-left: 23px; margin-bottom: -10px;">Collection</ion-label> -->
+    </div>
+    </ion-col> 
+    &nbsp;
+   
+  <ion-col size="3.8" class="menu-col" style="justify-content: center;" (click)="onWorkProgress()">
+    <div  style="justify-content: center;">
+      <img src="../../../assets/workp4.png"  height="45px" width="45px" style="margin-left: 20px;"><br>
+    <ion-label style="color: black;font-size: 12px; text-align: center;">Work progress</ion-label><br>
+  </div>
+  </ion-col>
+  </ion-row>
+ 
+  <ion-row class="menu-row">
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; padding: 8px; " (click)="onMaterialReports()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/reports.jpeg"  height="45px" width="45px" style="margin-left: 20px;">
+      <ion-label style="color: black;font-size: 12px; margin-left: 20px;">Reports</ion-label>
+    </div>
+    </ion-col>  
+    &nbsp;
+   
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; padding: 8px;" (click)="onMaterialApproval()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/approval.png"  height="45px" width="45px" style="margin-left: 20px;" >
+      <ion-label style="color: black;font-size: 12px; margin-left: 20px;">Approvals</ion-label>
+    </div>
+    </ion-col>
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; margin-left: 5px;" (click)="onPurchaseOrders()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/purchaseOrders.png"  height="45px" width="45px" style="margin-left: 20px;"><br>
+      <ion-label style="color: black;font-size: 12px; text-align: center;">Purchase orders</ion-label><br>
+    </div>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="menu-row">
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; margin-left: 12%; " (click)="onAssetsClicked()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/assets.png"  height="45px" width="45px" style="margin-left: 20px;">
+      <ion-label style="color: black;font-size: 12px; margin-left: 22px;">Assets</ion-label>
+    </div>
+    </ion-col>
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; margin-left: 10%;" (click)="onAddClicked()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/purchaseOrders.png"  height="45px" width="45px" style="margin-left: 20px;"><br>
+      <ion-label style="color: black;font-size: 12px; text-align: center;">Add List</ion-label><br>
+    </div>
+    </ion-col>
+
+  </ion-row>
+
+</div>
+
+</ion-content>
+ 

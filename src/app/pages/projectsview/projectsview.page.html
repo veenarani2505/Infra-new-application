@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Project Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p style="text-align: center;">
+    <ion-label class="card_header">Project Details</ion-label>
+  </p>
+  <ion-row class="row_label" style="margin-top: -10px;">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectName}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project ID</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectId}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Description</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectDescription}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Type</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectType}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Address</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectAddress}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project City</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectCity}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project State</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectState}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Country</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.ProjectCountry}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project ZipCode</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.ProjectZipCode}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Estimated Value</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.ProjectEstimatedValue}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project Start Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.ProjectStartDate | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Project End Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text" >:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" >{{values.ProjectEndDate | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

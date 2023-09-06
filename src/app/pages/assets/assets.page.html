@@ -1,0 +1,195 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add Assets</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="collectAssetsForm">
+    <ion-row class="label-text">Asset Type *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customAssetTypeOptions" placeholder="Asset Type" class=""
+        (ionChange)="selectAssetType($event.target.value)" [(ngModel)]="asset_type" formControlName="asset_type">
+        <ion-select-option value="Owned">Owned</ion-select-option>
+        <ion-select-option value="Lease">Lease</ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-row class="label-text">Equipment Type</ion-row>
+
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" placeholder="Equipment Type" class=""
+        [interfaceOptions]="customequipmentOptions" (ionChange)="selectEquipmentType($event.target.value)"
+        formControlName="asset_type_ID" [value]="asset_type_ID">
+        <ion-select-option *ngFor="let s of EquipmentResponse2" [value]="s.id">{{s.equipment_type}}
+        </ion-select-option>
+      </ion-select>
+    </div>
+
+  <div  *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Vehicle Number</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vehicle number" formControlName="leased_vehicle_number" type="text"
+        oninput="this.value = this.value.toUpperCase()"></ion-input>
+    </ion-item>
+  </div>
+
+  <div  *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Invoice Number *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Invoice Number" type="text" formControlName="leased_invoice_number" class="text-field2"></ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">TDS</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="TDS" formControlName="leased_tds" type="text">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div  *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Vendor Name</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vendor name" formControlName="leased_vendor_name" type="text"></ion-input>
+    </ion-item>
+  </div>
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text"   >Previous Outstanding Amount</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Previous Outstanding Amount" formControlName="leased_outstanding_amount" type="number"></ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Current month</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Current Month" formControlName="leased_current_month" type="text"></ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text"> Bill Amount</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Bill Amount" formControlName="leased_bill_amount" type="number">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Payment Made</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Payment Made" formControlName="leased_payment_made" type="number">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Toatl Bill Amount</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Total bill amount" formControlName="leased_total_bill_amount" type="number">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Proposed Payment By Site</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Proposed Payment By Site" formControlName="leased_Proposed_payment_by_site" type="text">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Lease Start Date </ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime displayFormat="DD-MMM-YYYY" placeholder="DD-MMM-YYYY" formControlName="leased_start_date" [max]="2099">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div  *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Lease End Date </ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime displayFormat="DD-MMM-YYYY" placeholder="DD-MMM-YYYY" [max]="2099" formControlName="leased_end_date">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Lease'">
+    <ion-row class="label-text">Approved By GSH</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="approved by GSH" formControlName="leased_Approved_by_GSH" type="text"></ion-input>
+    </ion-item>
+  </div>
+
+
+  <div *ngIf="asset_type == 'Owned'">
+    <ion-row class="label-text">Vehicle Number</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vehicle number" formControlName="owned_vehicle_number" type="text"
+        oninput="this.value = this.value.toUpperCase()"></ion-input>
+    </ion-item>
+  </div>
+
+  <div  *ngIf="asset_type == 'Owned'">
+    <ion-row class="label-text">Invoice Number *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Invoice Number" type="text" formControlName="owned_invoice_number" class="text-field2"></ion-input>
+    </ion-item>
+  </div>
+
+  <div  *ngIf="asset_type == 'Owned'">
+    <ion-row class="label-text">Vendor Name</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Supplier name" formControlName="owned_vendor_name" type="text"></ion-input>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Owned'">
+    <ion-row class="label-text">Procured Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime displayFormat="DD-MMM-YYYY" placeholder="Procured Date" formControlName="procure_date">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div *ngIf="asset_type == 'Owned'">
+    <ion-row class="label-text">Procured Amount *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Procured Amount" type="number" formControlName="owned_bill_amount"></ion-input>
+    </ion-item>
+  </div>
+
+  <ion-row class="label-text">Notes</ion-row>
+  <ion-item class="input-field2" lines="none">
+     <ion-textarea class="capitalize" formControlName="notes" placeholder="Notes"></ion-textarea>
+   </ion-item>
+
+  <ion-row class="image-label2">
+    <ion-col>Invoice upload</ion-col>
+  </ion-row>
+
+    <ion-row class="image-view">
+      <ion-col (click)="takePhoto(1)">
+        <img src={{image}} onError="src = 'assets/upload.png'">
+      </ion-col>
+    </ion-row>
+
+    <ion-button class="submit_btn" expand="block" type="submit" (click)="onAddAssets()">
+      Add Assets
+    </ion-button>
+  </form>
+
+</ion-content>

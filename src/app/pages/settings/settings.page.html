@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_text">Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="selectText">
+    <ion-label>
+      Please select the project and subproject to continue!
+    </ion-label>
+  </div>
+  <div *ngIf="projectsData?.length" class="drop-view">
+    <ion-select [(ngModel)]="selectedproject" placeholder="Project Name" [compareWith]="compareprojects"
+      class="select-field" (ionChange)="selectProjects($event.target.value)">
+      <ion-select-option *ngFor="let s of projectsData; index as i" [value]="s">{{s.ProjectName}}</ion-select-option>
+    </ion-select>
+  </div>
+
+  <div *ngIf="subProjectsData?.length" class="drop-view">
+    <ion-select [(ngModel)]="selectedSubProject" placeholder=" Sub Project Name" [compareWith]="comparesubprojects"
+      class="select-field" (ionChange)="selectSubProjects($event.target.value)">
+      <ion-select-option *ngFor="let s of subProjectsData" [value]="s">{{s.SubProjectName}}</ion-select-option>
+    </ion-select>
+  </div>
+
+  <ion-button [disabled]="disabled" class="submit_btn" type="submit" expand="block" (click)="submit()">Submit
+  </ion-button>
+
+</ion-content>

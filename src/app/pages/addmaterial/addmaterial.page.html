@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add Material</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="Material_label">{{Materialname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="collectAddMaterialForm">
+    <ion-row class="label-text">Material Id *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Material Id" type="text" formControlName="MaterialId" class="text-field2"></ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">Material Name *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Material Name" type="text" formControlName="MaterialName" class="text-field2"></ion-input>
+    </ion-item>
+   
+    <ion-row class="label-text">Material Category *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Material Type" type="text" formControlName="MaterialCategory" class="text-field2"></ion-input>
+    </ion-item>
+    
+    <ion-row class="label-text">Material SubCategory *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Material SubCategory" type="text" formControlName="MaterialSubCategory" class="text-field2"></ion-input>
+    </ion-item>
+    
+    <ion-row class="label-text">Material Description *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Material Description" type="text" formControlName="MaterialDescription" class="text-field2"></ion-input>
+    </ion-item>
+    
+    <ion-row class="label-text">Metrics *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="metrics" type="text" formControlName="Metrics" class="text-field2"></ion-input>
+    </ion-item>
+    
+    <ion-row class="label-text">Price *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Price" type="number" formControlName="Price" class="text-field2"></ion-input>
+    </ion-item>
+     
+    <ion-row class="label-text">Sub Project Country *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProjectCountry" type="text" formControlName="SubProjectCountry" class="text-field2"></ion-input>
+    </ion-item>
+     
+     <ion-row class="label-text">Mateial Notes *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Material Notes" type="text" formControlName="MateialNotes" class="text-field2"></ion-input>
+    </ion-item>
+
+    <ion-button class="submit_btn" expand="block" type="submit" (click)="onAddMaterials()">
+      Add Material
+    </ion-button>
+
+  </form>
+</ion-content>

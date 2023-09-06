@@ -1,0 +1,73 @@
+ion-menu ion-content{
+    --background: var(--ion-item-background, var(--ion-background-color, var(--ion-color-white)));
+  }
+
+  .main-header{
+     height: 25vh;
+     width: 120%;
+     background: var(--ion-color-primary); 
+     box-shadow: 0 1px 10px var(--ion-color-light);
+     margin-left: -4.5vh;
+   div{
+      transform: translateY(2vh);
+      .profile_img{
+         width: 10vh;
+         height: 10vh;
+         background: var(--ion-color-white);
+         margin-bottom: 5px;
+         border: 1px solid primary;
+              }
+
+              .name_text{
+                 font-weight: bold;
+                 font-size: 1.2rem;
+                 color: var(--ion-color-white);
+                 p{
+                    margin-top: 3px;
+                    .email_text{
+                       font-size: 0.7rem;
+                    }
+                 }
+                   }
+   }
+
+  }
+
+  .menu-items{
+    --background: white;
+    ion-item.selected{
+     --background: rgba(var(--ion-item-primary-rgb),0.14);
+     border-left: 7px solid var(--ion-color-primary);
+     ion-label{
+       color: var(--ion-color-primary);
+       font-weight: bold;
+     }
+     
+   }
+   ion-item.selected ion-icon{
+     color: var(--ion-color-primary);
+   }
+ }
+
+ .title-label{
+   margin-right: 70px;
+ }
+
+ .userole_text{
+   font-size: 10px;
+   color: white;
+  
+ }
+ .selectdrop{
+  color: white;
+ }
+
+  .header-icon-btn {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-left: 122px;
+    font-size: 16px;
+    padding-bottom: 5px;
+  }

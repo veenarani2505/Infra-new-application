@@ -1,0 +1,100 @@
+.project_label {
+    padding-right: 20px;
+    font-size: 12px;
+} 
+.title_label {
+    font-size: 18px;
+    margin-left: -20px;
+}
+.addBtn {
+    text-transform: none;
+    --font-size: 14px;
+    font-weight: 500;
+    --border-radius: 8px;
+    position: fixed;
+    top: 90%;
+    left: 47%;
+}
+.text{
+    animation-name: example;
+    animation-duration: 6s;
+    color: red;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    left: 50%;
+    top: 50%;
+}
+.row1{
+    border: 0.5px solid var(--ion-color-color_12);
+    margin-left: 4px;
+    margin-top: 4px;
+    margin-right: 4px;
+}
+.cl-1{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-2{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;  
+}
+.cl-3{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-4{
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-5{
+    text-align: center;
+    font-size: 12px;
+}
+.row2{
+    border-left: 0.5px solid var(--ion-color-color_12);
+    border-bottom: 0.5px solid var(--ion-color-color_12);
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.cl-6{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: left;
+    font-size: 12px;
+    padding-left: 12px;
+}
+.cl-7{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: left;
+    font-size: 12px;
+    padding-left: 12px;
+}
+.cl-8{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: left;
+    font-size: 12px; 
+}
+.cl-9{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: right;
+    font-size: 12px;
+}
+.cl-10{
+    text-align: center;
+    font-size: 12px;    
+}
+.eye_icon{
+    color: black;
+    padding-right: 3px;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "infrastructure",
+  "integrations": {
+    "cordova": {}
+  },
+  
+  "type": "angular"
+}
+
+
+

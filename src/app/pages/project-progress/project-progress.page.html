@@ -1,0 +1,421 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Work Progress</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div style="margin-top: -10px;">
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="label_text">Work Component</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label style="font-size: 12px;">{{component}}</ion-label>
+      </ion-col>
+    </ion-row>
+</div>
+<ion-row>
+  <ion-col size="6">
+    <ion-label class="label_text">Daily Report:</ion-label>
+  </ion-col>
+  <ion-col size="6">
+    <ion-label style="font-size: 12px;">{{DailyDateReport | date:"dd-MMM-YYYY"}}</ion-label>
+  </ion-col>
+</ion-row> 
+
+  <form [formGroup]="myForm">
+
+    <ion-row class="label-text">Sub Work Component
+      <span
+          [ngStyle]="{ 'color': myForm.get('sub_work_component_id').errors?.required ? 'red' : 'green' }">*</span>
+    </ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" placeholder="Sub work component" class=""
+        [interfaceOptions]="customSubWorkComponentOptions" formControlName="sub_work_component_id" [value]="sub_work_component_id" (ionChange)="selectSubWorkType($event.target.value)">
+        <ion-select-option *ngFor="let s of subworkCompleted" [disabled]="isDisbled" [value]="s.id">{{s.work_sub_components}}
+        </ion-select-option>
+      </ion-select>
+    </div>
+    <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+      <ion-col size="7" class="quanity_text"> Quantity<span
+          [ngStyle]="{ 'color': myForm.get('work_done_quantity').errors?.required ? 'red' : 'green' }">*</span>
+      </ion-col>
+      <ion-col size="5" class="metrics_text"> Metrics </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="7">
+        <ion-item class="input-field" lines="none" style="text-align: right;">
+          <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+        !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" (input)="checkValue($event)"
+            formControlName="work_done_quantity"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="5">
+        <div class="drop-view" style="padding-top: 12px; ">
+          <ion-label class="cumMetrics_label">Cum</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="label-text">Notes</ion-row>
+    <ion-item class="input-field2" lines="none">
+      <ion-textarea class="capitalize" placeholder="Notes" formControlName="notes"></ion-textarea>
+    </ion-item>
+    <span class="error2 ion-padding" *ngIf="errorControl.notes.touched && errorControl.notes.errors?.maxlength">
+      *Please enter below 256 characters
+    </span>
+
+    <div class="upload-div">
+      <ion-button class="uploadBtn" (click)="uploadImages(1)">Upload Photos</ion-button>
+    </div>
+
+    <div *ngIf="isBase64">
+      <ion-row *ngIf="uploadMultipleImages2">
+        <ion-col size="4" style="display: inline-block;" *ngFor="let photo of uploadMultipleImages2; let i = index">
+          <img src="{{photo}}" height="80px" width="80px">
+          <ion-button (click)="materialimagesClose2(i)" size="small" class="close" style="width: 10px;height: 20px; background-color: white;
+       border: 1px solid gray;">x</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row *ngIf="uploadMultipleImages">
+      <ion-col size="4" style="display: inline-block;" *ngFor="let photo of uploadMultipleImages; let i = index">
+        <img src={{photo}} height="80px" width="80px">
+        <ion-button (click)="materialimagesClose(i)" size="small" class="close" style="width: 10px;height: 20px; background-color: white;
+     border: 1px solid gray;">x</ion-button>
+      </ion-col>
+    </ion-row>
+    <div formArrayName="equipment">
+      <div *ngFor="let equip of myForm.get('equipment').controls; let i=index">
+        <fieldset>
+          <legend>
+            <h3>Equipment Details {{i+1}} </h3>
+          </legend>
+          <div [formGroupName]="i">
+            <ion-row class="label-text">Equipment Type <span
+                [ngStyle]="{ 'color': equipment.controls[i].get('equipment_type_id').errors?.required ? 'red' : 'green' }">*</span>
+            </ion-row>
+
+            <div class="drop-view">
+              <ion-select style="padding: 10px;" placeholder="Equipment Type" class=""
+                [interfaceOptions]="customequipmentOptions" (ionChange)="selectEquipmentType($event.target.value)"
+                formControlName="equipment_type_id" [value]="equipment_type_id">
+                <ion-select-option *ngFor="let s of EquipmentResponse" [value]="s.id">{{s.equipment_type}}
+                </ion-select-option>
+              </ion-select>
+            </div>
+
+            <ion-row class="label-text">Equipment Number
+              <span
+                [ngStyle]="{ 'color': equipment.controls[i].get('equipment_no').errors?.required ? 'red' : 'green' }">*</span>
+            </ion-row>
+
+            <ion-item class="input-field" lines="none">
+              <ion-input placeholder="Equipment number" type="text" oninput="this.value = this.value.toUpperCase()"
+                formControlName="equipment_no"></ion-input>
+            </ion-item>
+            <span class="error2"
+              *ngIf="equipment.controls[i].get('equipment_no').touched && equipment.controls[i].get('equipment_no').errors?.maxlength">
+              *Please enter below 40 characters
+            </span>
+
+            <ion-row class="label-text">Fuel Type <span
+                [ngStyle]="{ 'color': equipment.controls[i].get('fuel_type').errors?.required ? 'red' : 'green' }">*</span>
+            </ion-row>
+            <div class="drop-view">
+              <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Fuel consumed"
+                class="" (ionChange)="selectFuelType($event.target.value)" formControlName="fuel_type"
+                [value]="fuel_type">
+                <ion-select-option *ngFor="let s of fuelResponse" [value]="s.AutoMaterialId">
+                  {{s.MaterialSubCategory}}
+                </ion-select-option>
+              </ion-select>
+            </div>
+
+            <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+              <ion-col size="6" class="quanity_text"> Quantity <span
+                  [ngStyle]="{ 'color': equipment.controls[i].get('fuel_consumed').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+              <ion-col size="6" class="metrics_text"> Metrics <span
+                  [ngStyle]="{ 'color': equipment.controls[i].get('metrics').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item class="input-field" lines="none" style="text-align: right;">
+                  <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+        !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" (input)="checkValue1($event)"
+                    formControlName="fuel_consumed"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="drop-view">
+                  <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics"
+                    class="" (ionChange)="selectEquipMetrics($event.target.value)" formControlName="metrics">
+                    <ion-select-option *ngFor="let s of fuelMetrics">{{s.Metrics}}
+                    </ion-select-option>
+                  </ion-select>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+              <ion-col size="6" class="quanity_text">Initial Reading <span
+                  [ngStyle]="{ 'color': equipment.controls[i].get('initial_reading').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+              <ion-col size="6" class="metrics_text">End Reading <span
+                  [ngStyle]="{ 'color': equipment.controls[i].get('end_reading').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item class="input-field" lines="none">
+                  <ion-input placeholder="Initial Reading" type="number" formControlName="initial_reading"
+                    class="text-field2" (input)="checkIntialRead($event)"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-item class="input-field" lines="none">
+                  <ion-input placeholder="End Reading" type="number" formControlName="end_reading"
+                    (input)="checkFinalRead($event)" s class="text-field2">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <span class="error2"
+              *ngIf="equipment.controls[i].get('initial_reading').value >= equipment.controls[i].get('end_reading').value">*Please
+              enter end reading greater than initial reading</span>
+
+            <ion-row class="label-text">Issued Date </ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-datetime [max]="equipmentDate" displayFormat="DD-MMM-YYYY" placeholder="Issue Date"
+                formControlName="equipment_issued_date" [(ngModel)]="equipmentDate"></ion-datetime>
+              <ion-icon name="calendar" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-row class="label-text">Fuel Issued By</ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-input placeholder="Fuel issued by" max="30" type="text" formControlName="fuel_issued_by"
+                class="text-field">
+              </ion-input>
+            </ion-item>
+            <span class="error2"
+              *ngIf="equipment.controls[i].get('fuel_issued_by').touched && equipment.controls[i].get('fuel_issued_by').errors?.maxlength">
+              *Please enter below 40 characters
+            </span>
+
+          </div>
+          <ion-button color="danger" (click)="deleteEquipment(i)" class="deleteBtn">
+            <ion-icon name="trash-outline" style="padding-right: 2px;"></ion-icon>
+            Delete
+          </ion-button>
+          <ion-button color="primary" [disabled]="!myForm.get('equipment').at(i).valid" (click)="saveEquipment(i)"
+            class="saveBtn">
+            Save
+          </ion-button>
+        </fieldset>
+      </div>
+
+      <div class="upload-div">
+        <ion-button color="primary" [disabled]="isControls" class="uploadBtn" (click)="addNewEqupment()">Add
+          Equipment</ion-button>
+      </div>
+    </div>
+
+    <div formArrayName="steel">
+      <div *ngFor="let equip of myForm.get('steel').controls; let j=index">
+        <fieldset>
+          <legend>
+            <h3>Steel Details {{j+1}}</h3>
+          </legend>
+          <div [formGroupName]="j">
+            <ion-row class="label-text">Steel Type
+              <span
+                [ngStyle]="{ 'color': steel.controls[j].get('material_id').errors?.required ? 'red' : 'green' }">*</span>
+            </ion-row>
+            <div class="drop-view">
+              <ion-select style="padding: 10px;" [interfaceOptions]="customSteelTypeOptions" placeholder="Steel Type"
+                class="" (ionChange)="selectSteelType($event.target.value)" formControlName="material_id"
+                [value]="material_id">
+                <ion-select-option *ngFor="let s of steelResponse; let i=index" [value]="s.AutoMaterialId">
+                  {{s.MaterialSubCategory}}
+                </ion-select-option>
+              </ion-select>
+            </div>
+            <!-- <span class="error" *ngIf="steel.controls[j].get('material_id').errors?.required">*Please select steel type</span>  -->
+            <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+              <ion-col size="6" class="quanity_text"> Quantity <span
+                  [ngStyle]="{ 'color': steel.controls[j].get('steel_quantity').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+              <ion-col size="6" class="metrics_text"> Metrics <span
+                  [ngStyle]="{ 'color': steel.controls[j].get('steel_metrics').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item class="input-field" lines="none" style="text-align: right;">
+                  <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+        !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" (input)="checkValue2($event)"
+                    formControlName="steel_quantity"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="drop-view">
+                  <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics"
+                    class="" (ionChange)="selectSteelMetrics($event.target.value)" formControlName="steel_metrics">
+                    <ion-select-option *ngFor="let s of steelMetrics">{{s.Metrics}}
+                    </ion-select-option>
+                  </ion-select>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="label-text">Issued Date </ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-datetime [max]="steelDate" displayFormat="DD-MMM-YYYY" placeholder="Issue Date"
+                formControlName="steel_issued_date" [(ngModel)]="steelDate"></ion-datetime>
+              <ion-icon name="calendar" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-row class="label-text">Issued By</ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-input placeholder="Issued By" maxlength="30" type="text" formControlName="steel_issued_by"
+                class="text-field">
+              </ion-input>
+            </ion-item>
+            <span class="error2"
+              *ngIf="steel.controls[j].get('steel_issued_by').touched && steel.controls[j].get('steel_issued_by').errors?.maxlength">
+              *Please enter below 40 characters
+            </span>
+          </div>
+
+          <ion-button color="danger" (click)="deleteSteel(j)" class="deleteBtn">
+            <ion-icon name="trash-outline" style="padding-right: 2px;"></ion-icon>
+            Delete
+          </ion-button>
+
+          <ion-button [disabled]="!myForm.get('steel').at(j).valid" color="primary" (click)="saveSteel(j)"
+            class="saveBtn">
+            Save
+          </ion-button>
+
+        </fieldset>
+
+      </div>
+      <div class="upload-div">
+        <ion-button color="primary" [disabled]="isControls2" class="uploadBtn" (click)="addNewSteel()">Add Steel
+        </ion-button>
+      </div>
+
+    </div>
+
+    <div formArrayName="MD">
+      <div *ngFor="let equip of myForm.get('MD').controls; let k=index">
+        <fieldset>
+          <legend>
+            <h3>Mixed Design Details {{k+1}}</h3>
+          </legend>
+          <div [formGroupName]="k">
+            <ion-row class="label-text">Mixed Design Type <span
+                [ngStyle]="{ 'color': MD.controls[k].get('md_type_id').errors?.required ? 'red' : 'green' }">*</span>
+            </ion-row>
+            <div class="drop-view">
+              <ion-select style="padding: 10px;" [interfaceOptions]="customWorkTypeOptions"
+                placeholder="Mixed Design Type" class="" (ionChange)="selectmixedmaterialType($event.target.value)"
+                formControlName="md_type_id" [value]="md_type_id">
+                <ion-select-option *ngFor="let s of mixedworktypeArray" [value]="s.mix_design_type">
+                  {{s.mix_design_type}}
+                </ion-select-option>
+              </ion-select>
+            </div>
+
+            <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+              <ion-col size="6" class="quanity_text"> Quantity <span
+                  [ngStyle]="{ 'color': MD.controls[k].get('md_quantity').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+              <ion-col size="6" class="metrics_text"> Metrics <span
+                  [ngStyle]="{ 'color': MD.controls[k].get('md_metrics').errors?.required ? 'red' : 'green' }">*</span>
+              </ion-col>
+
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item class="input-field" lines="none" style="text-align: right;">
+                  <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+        !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" (input)="checkValue3($event)"
+                    formControlName="md_quantity"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="6">
+                <div class="drop-view">
+                  <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics"
+                    class="" (ionChange)="selectMDMetrics($event.target.value)" formControlName="md_metrics">
+                    <ion-select-option *ngFor="let s of MDMetrics">{{s.metrics}}</ion-select-option>
+                  </ion-select>
+                </div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="label-text">Issued Date </ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-datetime [max]="mixedDesignDate" displayFormat="DD-MMM-YYYY" placeholder="Issue Date"
+                formControlName="md_issued_date" [(ngModel)]="mixedDesignDate"></ion-datetime>
+              <ion-icon name="calendar" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-row class="label-text">Issued by</ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-input placeholder="Issued by" maxlength="30" type="text" formControlName="md_issued_by"
+                class="text-field">
+              </ion-input>
+            </ion-item>
+            <span class="error2"
+              *ngIf="MD.controls[k].get('md_issued_by').touched && steel.controls[k].get('md_issued_by').errors?.maxlength">
+              *Please enter below 40 characters
+            </span>
+
+          </div>
+
+          <ion-button color="danger" (click)="deleteMixedDesign(k)" class="deleteBtn">
+            <ion-icon name="trash-outline" style="padding-right: 2px;"></ion-icon>
+            Delete
+          </ion-button>
+          <ion-button color="primary" [disabled]="!myForm.get('MD').at(k).valid" (click)="saveMixed(k)"
+            class="saveBtn">
+            Save
+          </ion-button>
+          
+        </fieldset>
+
+      </div>
+      <div class="upload-div">
+        <ion-button color="primary" [disabled]="isControls3" class="uploadBtn" (click)="addNewMixedDesign()">Add Mixed
+          Design</ion-button>
+      </div>
+    </div>
+  </form>
+
+  <div style="text-align: center; padding-left: 20px; padding-right: 20px; padding-top: 20px">
+    <ion-button class="submit_btn" expand="block" type="submit" [disabled]="!myForm.valid || isDisable"
+      (click)="onSubmit()">
+      Submit
+    </ion-button>
+  </div>
+</ion-content>

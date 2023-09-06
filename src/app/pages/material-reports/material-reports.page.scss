@@ -1,0 +1,249 @@
+.tabs_toolbar{
+    margin-top: -10px;
+    --min-height:40px!important;
+}
+.header_toolbar{
+    margin-bottom: -10px;
+    --min-height:40px!important;
+}
+ion-segment{
+    height:20px;
+}
+ion-segment-button{
+    min-height:20px;
+}
+ion-tab-button.tab-selected {
+    border-bottom: 2px solid #3880ff;
+}
+ion-segment-button {
+    text-transform: none;
+}
+.noRecords_label{
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+}
+.info_card{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid grey;
+}
+.filter_icon{
+    color: black;
+    margin-bottom: 15px;
+}
+.arrow_icon{
+    color: black;
+    font-size: 23px;
+}
+.label{
+    text-align: left;
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-left: 30px;
+}
+.down_arrow_icon{
+    font-size: 20px;
+    color: black;
+    margin-left: 5px;
+}
+.horizontalline {
+    border-top: 1px solid gray;
+    height: 1px;
+    width: 100%;
+    justify-content: center;
+}
+.inputbox {
+    border: 1px solid grey;
+    color: black;
+    height: 40px;
+    font-family: regular;
+    font-size: 14px;
+    padding-left: 1%;
+    padding-right: 0px;
+    margin-top: 2%;
+    border-radius: 5px;
+}
+.drop-view{
+    border:  1px solid grey;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-left: 5px;
+    border-radius: 8px;
+    height: 50px;
+    margin-top: 1rem;
+}
+.submit_btn{
+    --box-shadow: none;
+    --border-radius: 10px;
+    height: 48px;
+    font-size: 1rem;
+    color: var(--ion-color-white);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    text-transform: initial;
+}
+.label-text{
+    margin-bottom: -12px;
+    margin-left: 6px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600; 
+}
+ion-item::part(native) {
+    --background: var(
+    --ion-overlay-background-color,
+    var(--ion-background-color, #fff)
+    );
+}
+.m-t-10 {
+    margin-top: 10px;
+}
+.m-b-10 {
+    margin-bottom: 10px;
+}
+.m-l-20 {
+    margin-left: 20px;
+}
+.project_label{
+    padding-right: 20px;
+    font-size: 12px;
+}
+.title_label{
+    font-size: 18px;
+    margin-left: -20px;
+}
+.tabs_toolbar{
+    margin-top: -10px;
+    --min-height:40px!important;
+}
+.header_toolbar{
+    margin-bottom: -10px;
+    --min-height:40px!important;
+}
+ion-segment{
+    height:20px;
+}
+ion-segment-button{
+    min-height:20px;
+} 
+.homebtn{
+    font-size: 16px;
+    padding-right: 18px;  
+}
+.row1{
+    border: 0.5px solid var(--ion-color-color_12);
+    margin-left: -4px;
+    margin-right: -4px;
+}
+.cl-1{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-2{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-3{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-4{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+}
+.cl-5{
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.row2{
+    border-left: 0.5px solid var(--ion-color-color_12);
+    border-bottom: 0.5px solid var(--ion-color-color_12);
+    margin-left: -4px;
+    margin-right: -4px;
+}
+.cl-6{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: left;
+    font-size: 12px;
+    padding-left: 12px;
+}
+.cl-sno{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: right;
+    font-size: 12px;
+    padding-right: 8px;
+}
+.cl-7{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: left;
+    font-size: 12px;
+    padding-left: 12px;
+}
+.cl-8{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: left;
+    font-size: 12px; 
+}
+.cl-9{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: right;
+    font-size: 12px;
+}
+.cl-10{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: center;
+    font-size: 12px; 
+}
+.cl-11{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: right;
+    font-size: 12px;
+}
+.cl-14{
+    border-right: 0.5px solid var(--ion-color-color_12);
+    text-align: right;
+    font-size: 12px; 
+}
+.eye_icon{
+    color: black;
+}
+.checkMark_icon{
+    color: green;
+}
+.close_icon{
+    color: red;
+}
+.project_label{
+    padding-right: 10px;
+    font-size: 12px;
+}
+.title_label{
+    font-size: 18px;
+    margin-left: -20px;
+}
+.filter-button{
+    float: right;
+    margin-top: -10px;
+}

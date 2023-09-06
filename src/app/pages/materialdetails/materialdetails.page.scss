@@ -1,0 +1,64 @@
+.left_text{
+    font-size: 14px;
+    color: var(--ion-color-black);
+} 
+.right_text{
+    font-size: 12px;
+    color: grey;
+    text-align: left;
+}
+ion-card{
+    padding: 10px;
+} 
+img{
+    border: 1px solid var(--ion-color-inputBorder);
+    border-radius: 10px;
+    width: 400px;
+    height: 200px;
+    size: 10px;
+}
+.image-view{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+.image-label{
+    text-align: center;
+}
+.card_header{
+    text-align: center;
+    margin-top: 5px;
+    color: var(--ion-color-black);
+    font-size: 18px;
+    font-weight:500;
+}
+.row_label{
+    margin-bottom: -7px;
+}
+.noImage_text{
+    text-align: center;
+    color: var(--ion-color-black);
+    font-size: 18px;
+    font-weight:500;
+    margin-top: 100px;
+    margin-left: 70px;
+}
+.title_label{
+    font-size: 18px;
+} 
+.project_label{
+    padding-right: 20px;
+    font-size: 12px;
+}
+.footer{
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+}
+.acpt_btnView{
+    text-align: center;
+}
+.dngr_btnView{
+    text-align: center;
+}

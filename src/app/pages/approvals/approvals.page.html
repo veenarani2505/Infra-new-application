@@ -1,0 +1,254 @@
+<ion-header>
+  <ion-toolbar color="primary" class="header_toolbar">
+    <ion-title class="title_label">Approvals</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary" class="tabs_toolbar">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="material" value="">
+      <ion-segment-button value="receipts">
+        <ion-label>Material Receipt</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="issues">
+        <ion-label>Material Issue</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="user">
+        <ion-label>User</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngSwitch]="material">
+
+  <ion-list *ngSwitchCase="'receipts'">
+    <ion-card style="border: 1px solid grey;" *ngFor="let data of response1">
+      <ion-row>
+        <ion-col size="10">
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Material Name </div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.MaterialName}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Quantity </div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.Quantity | currency:'USD':''}} {{data.Metrics}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Vendor Name</div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.VendorName}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Date </div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.DateReceived | date:"dd-MMM-YYYY"}}</div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="2" style="text-align: center;">
+          <ion-fab vertical="top" horizontal="end" class="fab-top">
+            <a ion-fab mini>
+              <ion-icon name="ellipsis-vertical-outline" color="dark"></ion-icon>
+            </a>
+            <ion-fab-list class="fab-list">
+              <ion-card class="fab-card">
+                <ion-row>
+                  <ion-col col-12 (click)="onViewDetails(data)">View</ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-fab-list>
+          </ion-fab>
+          <!-- <span (click)="onViewDetails(data)" class="view_text">View</span> -->
+        </ion-col>
+
+      </ion-row>
+      <ion-row class="btns-view">
+        <ion-col size="6" class="acpt_btnView">
+          <ion-button size="small" class="acpt_btn" color="success" (click)="onAcceptPressed(data)">Approve</ion-button>
+        </ion-col>
+        <ion-col size="6" class="dngr_btnView">
+          <ion-button size="small" color="danger" class="dngr_btn" (click)="onDeclinePressed(data)">Decline</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'issues'">
+    <ion-card style="border: 1px solid grey;" *ngFor="let data of issueMaterial1">
+      <ion-row>
+        <ion-col size="10">
+
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Material Name </div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.MaterialName}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Quantity </div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.Quantity | currency:'USD':''}} {{data.Metrics}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Received By</div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.ReceivedBy}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5">
+              <div class="left_text">Date </div>
+            </ion-col>
+            <ion-col size="1">
+              <div class="left_text">:</div>
+            </ion-col>
+            <ion-col size="6">
+              <div>{{data.IssuedDate | date:"dd-MMM-YYYY"}}</div>
+            </ion-col>
+          </ion-row>
+
+        </ion-col>
+
+        <ion-col size="2" style="text-align: center;">
+          <ion-fab vertical="top" horizontal="end" class="fab-top">
+            <a ion-fab mini>
+              <ion-icon name="ellipsis-vertical-outline" color="dark"></ion-icon>
+            </a>
+            <ion-fab-list class="fab-list">
+              <ion-card class="fab-card">
+                <ion-row>
+                  <ion-col col-12 (click)="onViewDetails2(data)">View</ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-fab-list>
+          </ion-fab>
+          <!-- <span (click)="onViewDetails2(data)" class="view_text">View</span> -->
+        </ion-col>
+
+      </ion-row>
+      <ion-row class="btns-view">
+        <ion-col size="6" class="acpt_btnView">
+          <ion-button size="small" class="acpt_btn" color="success" (click)="onAcceptIssuePressed(data)">Approve
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" class="dngr_btnView">
+          <ion-button size="small" color="danger" class="dngr_btn" (click)="onDeclineIssuePressed(data)">Decline
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'user'">
+    <ion-card style="border: 1px solid grey;" *ngFor="let data of userRes">
+      <ion-row>
+        <ion-col size="2.5">
+          <img src="../assets/user.png" class="user-img" />
+        </ion-col>
+        <ion-col size="9.5">
+          <!-- <div class="user_name_text">{{data.FullName}}</div> -->
+          <ion-row>
+            <ion-col size="7">
+              <span class="user_name_text">{{data.FullName}}</span>
+            </ion-col>
+            <ion-col size="5">
+              <ion-icon name="call-outline" class="phn_icon"></ion-icon>
+              <span class="phone_number_text">{{data.UserMobileNumber}}</span>
+              <!-- <span class="email_text">{{data.UserEmail}}</span> -->
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="7" class="role_col">
+              <span class="email_text">{{data.UserEmail}}</span>
+
+            </ion-col>
+            <ion-col size="5">
+              <span class="role_text_green">{{data.RoleName}}</span>
+            </ion-col>
+          </ion-row>
+          <!-- <div class="email_text">{{data.UserEmail}}</div> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="btns-view" style="border-color: 5px solid black;">
+        <ion-col size="2.6"></ion-col>
+        <ion-col size="4.7" class="acpt_btnView">
+          <ion-button size="small" class="acpt_btn" color="success" (click)="onAcceptPressedUser(data)">Approve
+          </ion-button>
+        </ion-col>
+        <ion-col size="4.7" class="dngr_btnView">
+          <ion-button size="small" color="danger" class="dngr_btn" (click)="onDeclinePressedUser(data)">Decline
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+  </ion-list>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;" *ngSwitchCase="'receipts'">
+    <div *ngIf="response1?.length === 0">No records found</div>
+  </ion-row>
+
+  <ion-row style="margin-top: 10%;margin-left: 40%;" *ngSwitchCase="'receipts'">
+    <div *ngIf="isData">Loading...</div>
+  </ion-row>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;" *ngSwitchCase="'issues'">
+    <div *ngIf="issueMaterial1?.length === 0 || issueMaterial1==undefined ">No records found</div>
+  </ion-row>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;" *ngSwitchCase="'user'">
+    <div *ngIf="userRes?.length === 0 || userRes==undefined ">No records found</div>
+  </ion-row>
+
+</ion-content>

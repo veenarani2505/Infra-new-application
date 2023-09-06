@@ -1,0 +1,164 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Mixed Design Issue</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-row class="label-text">Mixed Design Type</ion-row>
+  <div class="drop-view">
+    <ion-select style="padding: 10px;" [interfaceOptions]="customWorkTypeOptions" placeholder="Mixed design type" class=""
+      (ionChange)="selectmixedmaterialType($event.target.value)" [(ngModel)]="mix_design_type">
+      <ion-select-option *ngFor="let s of mixedworktypeArray"
+       value={{s.mix_design_type}}>{{s.mix_design_type}}</ion-select-option>
+    </ion-select>
+  </div>
+  <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+    <ion-col size="7" class="quanity_text"> Quantity </ion-col>
+    <ion-col size="5" class="metrics_text"> Metrics </ion-col>
+    
+   </ion-row>
+  <ion-row >
+    <ion-col size="7">
+      <ion-item class="input-field" lines="none" style="text-align: right;">
+        <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+        !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" 
+          (input)="checkValue2($event)" [(ngModel)]="quantity"  (keydown)="numberOnly($event)" ></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="5">
+      <div class="drop-view" style="padding-top: 12px; ">
+        <ion-label class="metrics_name">Cum</ion-label>
+      </div>
+    </ion-col>
+  </ion-row>
+  <span class="error" *ngIf="isSubmitted && errorControl.quantity.errors?.required">*Please enter quantity</span>
+
+<div style="text-align: center; margin-top: 15px;">
+  <ion-button class="getmat_btn" size="small" type="submit" (click)="getMaterialsForMixedDesign()">Get Materials</ion-button> </div>
+
+<div *ngIf="isDisplay">
+<ion-grid >
+  <ion-row class="header-row">
+    <ion-col size="6" class="r1c1">
+      <div>Material Name</div>
+    </ion-col>
+    <ion-col size="3" class="r1c2">
+      <div>Quantity</div>
+    </ion-col>
+    <ion-col size="3" class="r1c3">
+      <div>Metrics</div>
+    </ion-col>
+  </ion-row>
+  <div *ngFor="let data of getMaterialresponse2">
+  <ion-row class="data-row" >
+    <ion-col size="6"  class="r2c1">
+      <div>{{data.materialName}}</div>
+    </ion-col>
+    <ion-col size="3" class="r2c2">
+      <div>
+        <ion-input  placeholder="Quantity" type="number" min="0" oninput="this.value = 
+        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" 
+          (input)="checkValue($event, data.ID)" class="quant-input"  value={{data.Quantity}}></ion-input>
+      </div>
+    </ion-col>
+    <ion-col size="3" class="r2c3">
+      <div>{{data.metrics_1}}</div>
+    </ion-col>
+  </ion-row>
+
+</div>
+  
+</ion-grid>
+
+<ion-row class="label-text">Sub Project*</ion-row>
+<div class="drop-view">
+  <ion-select style="padding: 10px;" [interfaceOptions]="customSubProjectsOptions" placeholder="Sub project name" class=""
+  (ionChange)="selectSubProjects($event.target.value)"  [(ngModel)]="selectedSubProjectId">
+    <ion-select-option  *ngFor="let s of subProjectsData" value={{s.AutoSubProjectId}}>{{s.SubProjectName}}</ion-select-option>
+  </ion-select>
+</div>
+
+<ion-row class="label-text">Work Component*</ion-row>
+<div class="drop-view">
+  <ion-select [(ngModel)]="selectedWorkCompletedId"
+   style="padding: 10px;max-width: 100% !important;" [interfaceOptions]="customWorkCompletedOptions" placeholder="Work Component" class="myselect"
+    (ionChange)="selectworkComplted($event.target.value)" >
+    <ion-select-option *ngFor="let s of workCompleted2" value={{s.id}}>{{s.work_component}}</ion-select-option>
+  </ion-select>
+</div>
+
+<ion-row class="label-text">Subwork Component*</ion-row>
+<div class="drop-view">
+  <ion-select style="padding: 10px;" [interfaceOptions]="customSubWorkCompletedOptions" placeholder="Subwork Component" class=""
+    (ionChange)="selectsubWorkCompleted($event.target.value)" [(ngModel)]="selectedsubworkCompletedId">
+    <ion-select-option *ngFor="let s of subworkCompleted2" value={{s.id}}>{{s.work_sub_components}}</ion-select-option>
+  </ion-select>
+</div>
+
+<ion-row class="label-text">Issued Date *</ion-row>
+<ion-item class="input-field" lines="none">
+  <ion-datetime [max]="issuedDate" displayFormat="DD-MMM-YYYY" placeholder="Issue Date" [(ngModel)]="issuedDate"></ion-datetime>
+  <ion-icon name="calendar" slot="end"></ion-icon>
+</ion-item>
+
+<ion-row class="label-text">Issued Location </ion-row>
+<ion-item class="input-field" lines="none">
+  <ion-input class="text-field" maxlength="60" placeholder="Issue Location" type="text" [(ngModel)]="issuedLocation">
+  </ion-input>
+</ion-item>
+
+<ion-row class="label-text">Delivery Location </ion-row>
+<ion-item class="input-field" lines="none">
+  <ion-input class="text-field" maxlength="60" placeholder="Delivery Location" type="text" [(ngModel)]="deliveryLocation">
+  </ion-input>
+</ion-item>
+<span class="error" *ngIf="isSubmitted && errorControl.deliverLocation.errors?.required">*Please enter delivery location</span>
+
+<ion-row class="label-text">Vehicle Number </ion-row>
+<ion-item class="input-field" lines="none">
+  <ion-input placeholder="Vehicle Number" maxlength="30" type="text" oninput="this.value = this.value.toUpperCase()"
+  [(ngModel)]="vehicleNumber"></ion-input>
+</ion-item>
+<span class="error" *ngIf="isSubmitted && errorControl.issueVehicleNo.errors?.required">*Please enter vehicle number</span>
+
+<ion-row class="label-text">Receiver Name </ion-row>
+<ion-item class="input-field" lines="none">
+  <ion-input class="text-field" maxlength="30" placeholder="Receiver Name" type="text" [(ngModel)]="receivername"></ion-input>
+</ion-item>
+<span class="error" *ngIf="isSubmitted && errorControl.receivedBy.errors?.required">*Please enter receiver name</span>
+
+<ion-row class="label-text">Notes</ion-row>
+<ion-item class="input-field2" lines="none">
+  <ion-textarea class="capitalize" placeholder="Notes" [(ngModel)]="notes"></ion-textarea>
+</ion-item>
+
+<ion-row class="image-label2">
+  <ion-col>Mixed Design Invoice Upload</ion-col>
+</ion-row>
+
+<ion-row class="image-view">
+  <ion-col (click)="takePhoto(1)">
+    <img src="{{image}}" onError="src = 'assets/upload.png'">
+  </ion-col>
+</ion-row>
+
+<ion-row class="image-label" *ngIf="image">
+  <ion-col>Update Receipt</ion-col>
+</ion-row>
+
+<ion-button class="submit_btn" expand="block" type="submit" (click)="onSubmitMixedMaterial()">
+  Submit
+</ion-button> 
+
+</div>
+
+</ion-content>

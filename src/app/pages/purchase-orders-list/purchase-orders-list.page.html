@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Purchase Orders</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+
+  <div >
+    <ion-grid  class="receipts_view">
+      <ion-row class="row1">
+        <ion-col size="3" class="cl-1">
+          <div>Date</div>
+        </ion-col>
+
+        <ion-col size="2.5" class="cl-2">
+          <div>PO Id</div>
+        </ion-col>
+
+        <ion-col size="4" class="cl-2">
+          <div>Material Name</div>
+        </ion-col>       
+
+        <ion-col size="2.5" class="cl-4">
+          <div>Quantity</div>
+        </ion-col>
+
+      </ion-row>
+      <ion-row class="row2" *ngFor="let data of response" (click)="onViewClick(data)">
+        <ion-col size="3" class="cl-6">
+          <div>{{data.updated_timestamp | date:"dd-MMM-YYYY"}}</div>
+        </ion-col>
+
+        <ion-col size="2.5" class="cl-7">
+          <div>{{data.purchase_order_id}}</div>
+        </ion-col>
+
+        <ion-col size="4" class="cl-7">
+          <div>{{data.MaterialSubCategory}}</div>
+        </ion-col>
+
+        <ion-col size="2.5" class="cl-9">
+          <div>{{data.qunatity_ordered | currency:'USD':''}} {{data.metrics}}</div>
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;">
+    <div *ngIf="response?.length === 0">No records found</div>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/add-purchase-orders">
+      <ion-icon class="trashIcon" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

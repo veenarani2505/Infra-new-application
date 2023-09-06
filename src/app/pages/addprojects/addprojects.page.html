@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add Projects</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="collectAddProjectsForm">
+    <ion-row class="label-text">Project Id *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Id" type="text" formControlName="ProjectId" class="text-field2"></ion-input>
+    </ion-item>
+
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectId.errors?.required">*Please Enter Project Id</span>
+
+    <ion-row class="label-text">Project Name *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Name" type="text" formControlName="ProjectName" class="text-field2" ></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectName.errors?.required">*Please Enter Project Name</span>
+
+    <ion-row class="label-text">Project Description *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Description" type="text" formControlName="ProjectDescription" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectDescription.errors?.required">*Please Enter Project Description</span>
+
+    <ion-row class="label-text">Project Type *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Type" type="text" formControlName="ProjectType" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectType.errors?.required">*Please Enter Project Type</span>
+
+    <ion-row class="label-text">Project Address *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Address" type="text" formControlName="ProjectAddress" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectAddress.errors?.required">*Please Enter Project Address</span>
+
+    <ion-row class="label-text">Project City *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project City" type="text" formControlName="ProjectCity" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectCity.errors?.required">*Please Enter Project city</span>
+
+    <ion-row class="label-text">Project State *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project State" type="text" formControlName="ProjectState" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectState.errors?.required">*Please Enter Project State</span>
+
+    <ion-row class="label-text">Project Country *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Country" type="text" formControlName="ProjectCountry" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectCountry.errors?.required">*Please Enter Project Country</span>
+
+    <ion-row class="label-text">Project ZipCode *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project ZipCode" type="number" maxlength="6" inputmode="number" maxlength="6" pattern="[0-9]*" type="tel" formControlName="ProjectZipCode" class="text-field2" (keydown.space)="$event.preventDefault();"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectZipCode.errors?.required">*Please Enter Project Zip Code</span>
+
+    <ion-row class="label-text">Project Estimated Value *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Project Estimated Value" type="number" formControlName="ProjectEstimatedValue" class="text-field2" ></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectEstimatedValue.errors?.required">*Please Enter Project Estimated Value</span>
+
+    <ion-row class="label-text">Project Start Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime   displayFormat="DD-MMM-YYYY" placeholder="Project Start Date" formControlName="ProjectStartDate"
+      [(ngModel)]="frommindate"  [max]="2099" (ngModelChange)="getFromDate(frommindate)">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectStartDate.errors?.required">*Please Enter Project Start Date</span>
+
+      <ion-row class="label-text">Project End Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime  displayFormat="DD-MMM-YYYY"  [max]="2099" placeholder="Project End Date" formControlName="ProjectEndDate"
+      [min]="frommindate" [(ngModel)]="to_date" (ngModelChange)="gettoDate(to_date)">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+ 
+    <span class="error" *ngIf="isSubmitted && errorControl.ProjectEndDate.errors?.required">*Please Enter Project End Date</span>
+    <ion-button class="submit_btn" expand="block" type="submit" [disabled]="isDisabled" (click)="onAddProjects()">
+      Add Project
+    </ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Change Role</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<ion-list>
+  <ion-radio-group 
+  [(ngModel)]="roleId"
+  (ionChange)="UpdateRole($event.target.value)">
+    <ion-list-header *ngIf="roles_response?.length">
+      <ion-label class="user_roles_text">Assigned User Roles</ion-label>
+    </ion-list-header>
+
+    <ion-row>
+      <ion-col size="12">
+    <ion-item lines="none" *ngFor="let s of roles_response; index as i">
+      <ion-label>{{s.RoleName}}</ion-label>
+      <ion-radio slot="start"  
+      value="{{s.role_id}}"></ion-radio>
+    </ion-item>
+  </ion-col>
+  </ion-row>
+</ion-radio-group>
+  
+</ion-list>
+
+<ion-button class="submit_btn" *ngIf="roles_response?.length" type="submit" expand="block" (click)="submit()">Submit</ion-button> 
+
+</ion-content>

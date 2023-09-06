@@ -1,0 +1,121 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+@import "~animate.css/animate.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.filter-modal .modal-wrapper {
+
+    --border-radius: 20px;
+    --max-height: 55%;
+    --max-width: 85%;
+    --width: 85%;
+    --height: 55%;
+    --border-color: #428cff;
+      border-width: 1px;
+      top: 20%;
+}
+
+
+.filter-modal-stock .modal-wrapper {
+  --border-radius: 20px;
+  --max-height: 40%;
+  --max-width: 85%;
+  --width: 85%;
+  --height: 40%;
+  --border-color: #428cff;
+    border-width: 1px;
+    top: 20%;
+}
+
+.alertdropdowncssWorkType {
+  .alert-head {
+    padding: 15px 15px !important;
+    background-color: white;
+    font-family: sans-serif;
+    font-size: 16px;
+   
+
+  }
+  .alert-title {
+    color: color(--blue) !important;
+    font-size: 20px !important;
+   
+  }
+  .alert-message {
+   
+    text-align: left !important;
+    // padding: 15px !important;
+    font-family: semi-bold !important;
+    color: color(--blue) !important;
+  }
+  .alert-button-group {
+    //padding: 5px !important;
+    justify-content: center !important;
+  }
+  .alert-button {
+    width: 150px !important;
+    height: 35px !important;
+    background-color: #3880ff;
+    color: white !important;
+    text-transform: capitalize !important;
+    border-radius: 50px !important;
+    font-family: bbold !important;
+    text-align: center;
+    // margin: 0px 3px !important;
+    padding: 5px !important;
+    font-size: 16px !important;
+
+    .alert-button-inner{
+      justify-content: center;
+    }
+
+
+  }
+  .alert-button .button-inner {
+    justify-content: center !important;
+  }
+  .alert-wrapper {
+    border-radius: 5px !important;
+  }
+
+  .alert-button-group.sc-ion-alert-md {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: initial;
+    -ms-flex-pack: end;
+    justify-content: center;
+}
+}
+
+.alert-modal{
+  background-color: transparent !important;
+}
+

@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Material Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p style="text-align: center;">
+    <ion-label class="card_header">Material Issue</ion-label>
+  </p>
+
+  <ion-row class="row_label" style="margin-top: -10px;">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Category</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.MaterialCategory}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Sub Category</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.MaterialSubCategory}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Quantity</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.Quantity | currency:'USD':''}} {{values.Metrics}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Issued Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.IssuedDate | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Issued Location</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.IssuedLocation }}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text" style="text-transform: capitalize;">Delivery Location</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.DeliverLocation }}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vehicle Number</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.IssueVehicleNo | uppercase}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Receiver Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.ReceivedBy}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Notes</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.Notes}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Status</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.Status}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Voucher</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" *ngIf="!isImage">No voucher attached</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="image-view" *ngIf="isImage">
+    <ion-col>
+      <img [src]="image" (click)="openModal(image)">
+    </ion-col>
+  </ion-row>
+
+  <div class="footer">
+    <ion-row style="height: 40px; ">
+      
+        <ion-col size="6" class="acpt_btnView">
+          <ion-button size="small" class="acpt_btn" color="success" (click)="onAcceptPressed()">Approve</ion-button>
+        </ion-col>
+        <ion-col size="6" class="dngr_btnView">
+          <ion-button size="small" color="danger" class="dngr_btn" (click)="onDeclinePressed()">Decline</ion-button>
+        </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

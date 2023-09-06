@@ -1,0 +1,188 @@
+.input-field{
+    border-radius: 8px;
+    border:  2px solid var(--ion-color-inputBorder);
+    margin-top: 15px;
+    height: 50px;
+}
+.input-field2{
+   border-radius: 8px;
+   border:  2px solid var(--ion-color-inputBorder);
+   border-radius: 8px;
+   margin-top: 15px;
+}
+.drop-view{
+   border:  2px solid var(--ion-color-inputBorder);
+   padding-right: 15px;
+   padding-top: 3px;
+   padding-left: 5px;
+   border-radius: 8px;
+   height: 50px;
+   margin-top: 1rem;
+}
+.submit_btn{
+    --box-shadow: none;
+    --border-radius: 10px;
+    height: 48px;
+    font-size: 1rem;
+    color: var(--ion-color-white);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    text-transform: initial;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+img{
+    border:  1px solid var(--ion-color-inputBorder);
+    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+    size: 10px;
+}
+.image-view{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+.image-label{
+    text-align: center;
+}
+.text-field{
+    text-transform: capitalize;
+}
+.text-field3{
+    text-transform: uppercase;
+}
+::placeholder { /* Recent browsers */
+    text-transform: none;
+}
+.capitalize::first-letter {
+    text-transform: uppercase;
+}
+.label-text{
+    margin-bottom: -12px;
+    margin-left: 6px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+.image-label2{
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+.error{
+    color: var(--ion-color-danger); 
+    margin-top: -10px;
+}
+.project_label{
+    padding-right: 20px;
+    font-size: 12px;
+}
+.title_label{
+    font-size: 18px;
+    margin-left: -20px;
+}
+.getmat_btn{
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+}
+.quant_field{
+    width: 100%;
+    height: 100%;
+    padding-left: 0px;
+}
+.sc-ion-input-md-h {
+    --padding-top: 5px;
+    --padding-end: 5px;
+    --padding-bottom: 5px;
+    --padding-start: 5px;
+    font-size: inherit;
+}
+.header-row{
+    border: 1px solid var(--ion-color-color_12);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.data-row{
+    border-bottom: 1px solid var(--ion-color-color_12);
+    border-left: 1px solid var(--ion-color-color_12);
+    border-right: 1px solid var(--ion-color-color_12);
+}
+.r1c1{
+    border-right: 1px solid var(--ion-color-color_12);
+    text-align: center;
+}
+.r1c2{
+    border-right: 1px solid var(--ion-color-color_12);
+    text-align: center;
+}
+.r1c3{
+    text-align: center;
+}
+.r2c1{
+    padding-top: 10px;
+    border-right: 1px solid var(--ion-color-color_12);
+}
+.r2c2{
+    border-right: 1px solid var(--ion-color-color_12);
+    text-align: left;
+}
+.r2c3{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.quant-input{
+    text-align: right;
+}
+.metrics_name{
+    padding-top: 25px;
+    padding-left: 10px;
+    font-size: 16px;
+    color: var(--ion-color-color_14);
+}
+.quanity_text{
+    padding-left: 6px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+.metrics_text{
+    padding-left: 10px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+.input-field2{
+    border-radius: 8px;
+    border:  2px solid var(--ion-color-inputBorder);
+    border-radius: 8px;
+    margin-top: 15px;    
+}
+ 
+ 
+ 
+ 

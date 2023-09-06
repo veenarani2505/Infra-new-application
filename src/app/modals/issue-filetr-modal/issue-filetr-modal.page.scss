@@ -1,0 +1,64 @@
+
+.inputbox {
+    border: 1px solid grey;
+    color: black;
+    height: 40px;
+    font-family: regular;
+    font-size: 14px;
+    padding-left: 1%;
+    padding-right: 0px;
+    margin-top: 2%;
+    border-radius: 5px;
+  }
+
+
+  .input-field{
+    border-radius: 8px;
+    border:  1px solid grey;
+    height: 50px;
+ }
+
+  .label-text{
+    margin-bottom: -12px;
+    margin-left: 6px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600; 
+  }
+
+  .drop-view{
+    border:  1px solid grey;
+        display: flex;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-left: 5px;
+        border-radius: 8px;
+        height: 50px;
+        margin-top: 1rem;
+    }
+    
+
+   .submit_btn{
+    --box-shadow: none;
+    --border-radius: 10px;
+    height: 48px;
+    font-size: 1rem;
+    color: var(--ion-color-white);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    text-transform: initial;
+ 
+ }
+
+ .lol{
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: inherit;
+  align-items: inherit;
+  align-self: stretch;
+  text-overflow: ellipsis;
+  overflow: inherit;
+  box-sizing: border-box;
+}

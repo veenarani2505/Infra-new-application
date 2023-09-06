@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Material Receipt</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="collectMaterialForm">
+
+    <ion-row class="label-text">Category *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customCategeryOptions" placeholder="Category" class=""
+        (ionChange)="selectCategery($event.target.value)" formControlName="materialCategery">
+        <ion-select-option *ngFor="let s of mainCategery1">{{s.MaterialCategory}}</ion-select-option>
+      </ion-select>
+    </div>
+    <span class="error" *ngIf="isSubmitted && errorControl.materialCategery.errors?.required">*Please select category</span>
+
+    <ion-row class="label-text">Sub Category *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customsubCategeryOptions" placeholder="Sub Category"
+        [(ngModel)]="selectedCategery" (ionChange)="selectSubCategery($event.target.value)" interface="alert"
+        formControlName="materialId">
+        <ion-select-option *ngFor="let s of subCategery1" value="{{s.AutoMaterialId}}">{{s.MaterialSubCategory}}  </ion-select-option>
+      </ion-select>
+    </div>
+    <span class="error" *ngIf="isSubmitted && errorControl.materialId.errors?.required">*Please select subCategery</span>
+
+    <ion-row class="label-text">Vendor Name *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customVendorOptions" placeholder="Vendor Name"
+        (ionChange)="selectVendors($event.target.value)" formControlName="vendorId">
+        <ion-select-option *ngFor="let s of vendors1" value="{{s.AutoVendorId}}">{{s.VendorName}}</ion-select-option>
+      </ion-select>
+    </div>
+    <span class="error" *ngIf="isSubmitted && errorControl.vendorId.errors?.required">*Please enter vendor name</span>
+
+    <ion-row class="label-text">Invoice Number *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Invoice Number" type="text" formControlName="invoiceNo" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.invoiceNo.errors?.required">*Please enter invoice number</span>
+    <span  class="error ion-padding" *ngIf="errorControl.invoiceNo.touched && errorControl.invoiceNo.errors?.maxlength">*Please enter below 40 characters</span>
+
+    <ion-row class="label-text">Voucher Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime [max]="voucherDate"  displayFormat="DD-MMM-YYYY" placeholder="Voucher Date" formControlName="voucherDate" [(ngModel)]="voucherDate">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.voucherDate.errors?.required">*Please enter voucher date</span>
+
+    <ion-row class="label-text">Quantity *</ion-row>
+    <ion-row class="qunatity-row">
+      <ion-col size="7">
+        <ion-item class="input-field" lines="none" style="text-align: right;">
+          <ion-input placeholder="Quantity" type="number" min="1" oninput="this.value = 
+          !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" formControlName="quantity"
+            (input)="checkValue($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="5">
+        <div class="drop-view">
+          <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics" class=""
+            (ionChange)="selectMetrics($event.target.value)" [(ngModel)]="selectedMetrics" formControlName="metrics">
+            <ion-select-option *ngFor="let s of metrics1">{{s.Metrics}}</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-col>
+    </ion-row>
+    <span class="error" *ngIf="isSubmitted && errorControl.quantity.errors?.required">*Please enter quantity</span>
+
+    <ion-row class="label-text">Date Received *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime [max]="dateReceived" displayFormat="DD-MMM-YYYY" placeholder="Date Received" formControlName="dateReceived" [(ngModel)]="dateReceived" >
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitsKsted && errorControl.dateReceived.errors?.required">*Please enter date received</span>
+
+
+    <ion-row class="label-text">Vehicle Number *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vehicle Number" type="text" oninput="this.value = this.value.toUpperCase()" formControlName="vehicleNo"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.vehicleNo.errors?.required">*Please enter vehicle number</span>
+      <span  class="error ion-padding" *ngIf="errorControl.vehicleNo.touched && errorControl.vehicleNo.errors?.maxlength">*Please enter below 40 characters</span>
+
+
+    <ion-row class="label-text">Location Received *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Location Received" type="text" formControlName="location" class="text-field"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.location.errors?.required">*Please enter location received</span>
+      <span  class="error ion-padding" *ngIf="errorControl.location.touched && errorControl.location.errors?.maxlength">*Please enter below 40 characters</span>
+
+    <ion-row class="label-text">Notes</ion-row>
+    <ion-item class="input-field2" lines="none">
+      <ion-textarea class="capitalize" placeholder="Notes" formControlName="notes"></ion-textarea>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.notes.errors?.required"> *Please enter notes</span>
+    <span  class="error ion-padding" *ngIf="errorControl.notes.touched && errorControl.notes.errors?.maxlength">*Please enter below 256 characters</span>
+
+    <ion-row class="image-label2">
+      <ion-col>voucher upload</ion-col>
+    </ion-row>
+
+    <ion-row class="image-view">
+      <ion-col (click)="takePhoto(1)">
+        <img src={{image}} onError="src = 'assets/upload.png'">
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="image-label" *ngIf="image">
+      <ion-col>Voucher Update</ion-col>
+    </ion-row>
+
+    <ion-button class="submit_btn" expand="block" type="submit" [disabled]="isDisabled" (click)="onMaterialReceipts()">
+      Receipt Material
+    </ion-button>
+
+  </form>
+</ion-content>

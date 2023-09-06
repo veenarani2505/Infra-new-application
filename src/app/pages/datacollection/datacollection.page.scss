@@ -1,0 +1,159 @@
+ion-segment-button {
+    text-transform: none;
+}
+.title_label{
+    font-size: 18px;
+}
+.header_toolbar{
+    margin-bottom: -10px;
+    --min-height:40px!important;
+}
+.tabs_toolbar{
+    margin-top: -10px;
+    --min-height:40px!important;
+}
+.error{
+    color: var(--ion-color-danger); 
+    margin-top: -10px;
+}
+.project_label{
+    padding-right: 20px;
+    font-size: 12px;
+}
+.title_label{
+    font-size: 18px;
+    margin-left: -20px;
+}
+.input-field{
+    border-radius: 8px;
+    border:  2px solid var(--ion-color-inputBorder);
+    margin-top: 15px;
+    height: 50px;
+}
+.input-field2{
+   border-radius: 8px;
+   border:  2px solid var(--ion-color-inputBorder);
+   border-radius: 8px;
+   margin-top: 15px;
+}
+.drop-view{
+   border:  2px solid var(--ion-color-inputBorder);
+   padding-right: 15px;
+   padding-top: 3px;
+   padding-left: 5px;
+   border-radius: 8px;
+   height: 50px;
+   margin-top: 1rem;
+}
+.submit_btn{
+   --box-shadow: none;
+   --border-radius: 10px;
+   height: 48px;
+   font-size: 1rem;
+   color: var(--ion-color-white);
+   margin-bottom: 0.5rem;
+   margin-top: 1rem;
+   text-transform: initial;
+}
+.fileUpload {
+   position: relative;
+   overflow: hidden;
+   margin: 10px;
+}
+.fileUpload input.upload {
+   position: absolute;
+   top: 0;
+   right: 0;
+   margin: 0;
+   padding: 0;
+   font-size: 20px;
+   cursor: pointer;
+   opacity: 0;
+   filter: alpha(opacity=0);
+}
+.label-text{
+   margin-bottom: -12px;
+   margin-left: 6px;
+   margin-top: 15px;
+   font-size: 14px;
+   color: var(--ion-color-color_14);
+   letter-spacing: 0.5px;
+   font-weight: 600;
+}
+.image-label2{
+   margin-top: 10px;
+   width: 100%;
+   text-align: left;
+   margin-left: 4px;
+   font-size: 14px;
+   color: var(--ion-color-color_14);
+   letter-spacing: 0.5px;
+   font-weight: 600;
+}
+img{
+   border:  1px solid var(--ion-color-inputBorder);
+   border-radius: 10px;
+   width: 80px;
+   height: 80px;
+   size: 10px;
+}
+.image-view{
+   margin-top: 10px;
+   width: 100%;
+   text-align: center;
+}
+.image-label{
+  
+   text-align: center;
+}
+.close{
+   position: absolute;
+   z-index: 1;
+   right: 38px;
+   top: 2px;
+   height: 15px;
+   color: red;
+   width: 8px;
+}
+.weight_img{
+   position: relative;
+}
+.images_row{
+   margin-top: 10px;
+}
+.uploadImageTextView{
+   color: black; 
+   font-size: 16px;
+   background-color: #c3c7ca;
+   padding: 8px;
+   border-radius: 5px;
+   font-weight: 550; 
+   text-align: center;
+}
+.imageTextView{
+
+   font-size: 14px;
+   padding-left: 10px;
+   font-weight: 600;
+   color: var(--ion-color-color_14);
+   letter-spacing: 0.5px;
+ 
+}
+.imageTextHeader{
+   font-size: 18px;
+   color: black;
+}
+.image-view{
+   margin-top: 10px;
+   width: 100%;
+   text-align: center;
+}
+.error2{
+   margin-top: 5px; 
+   margin-left: 5px; 
+   font-size: 10px; color: red; 
+   font-weight: 550;
+}
+.capitalize::first-letter {
+   text-transform: uppercase;
+}

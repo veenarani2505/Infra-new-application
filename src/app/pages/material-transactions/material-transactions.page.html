@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar color="primary" class="header_toolbar">
+    <ion-title style="font-size: 18px;margin-left: -20px;">{{title1}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" style="padding-right: 20px; font-size: 12px;">{{projectname}}</ion-text>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary" class="tabs_toolbar">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="material" value="">
+      <ion-segment-button value="receipts">
+        <ion-label>Material Receipt</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="issues">
+        <ion-label>Material Issued</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngSwitch]="material">
+
+  <div *ngIf="response1?.length !== 0">
+    <ion-grid *ngSwitchCase="'receipts'" class="receipts_view">
+      <ion-row class="row1">
+        <ion-col size="3.3" class="cl-1">
+          <div> Date </div>
+        </ion-col>
+
+        <ion-col size="4.7" class="cl-2">
+          <div> Material Name  </div>
+        </ion-col>
+
+        <ion-col size="4" class="cl-4">
+          <div> Quantity </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row2" *ngFor="let data of response1" (click)="onViewClick1(data)">
+        <ion-col size="3.3" class="cl-6">
+          <div> {{data.UpdatedTimeStamp | date:"dd-MMM-YYYY"}} </div>
+        </ion-col>
+        <ion-col size="4.7" class="cl-7">
+          <div> {{data.MaterialSubCategory}}  </div>
+        </ion-col>
+        <ion-col size="4" class="cl-9">
+          <div> {{data.Quantity | currency:'USD':''}} {{data.Metrics}} </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="issueMaterial1?.length !== 0">
+
+    <ion-grid *ngSwitchCase="'issues'">
+      <ion-row class="row1">
+        <ion-col size="3.3" class="cl-1">
+          <div> Date </div>
+        </ion-col>
+        <ion-col size="4.7" class="cl-2">
+          <div> Material Name </div>
+        </ion-col>
+        <ion-col size="4" class="cl-4">
+          <div> Quantity </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="row2" *ngFor="let data of issueMaterial1" (click)="onViewClick2(data)">
+        <ion-col size="3.3" class="cl-6">
+          <div> {{data.UpdatedTimeStamp | date:"dd-MMM-YYYY"}} </div>
+        </ion-col>
+        <ion-col size="4.7" class="cl-7">
+          <div> {{data.MaterialSubCategory}} </div>
+        </ion-col>
+        <ion-col size="4" class="cl-9">
+          <div> {{data.Quantity | currency:'USD':''}} {{data.Metrics}} </div>
+        </ion-col> 
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;" *ngSwitchCase="'issues'">
+    <div *ngIf="issueMaterial1?.length === 0">No records found</div>
+  </ion-row>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;" *ngSwitchCase="'receipts'">
+    <div *ngIf="response1?.length === 0">No records found</div>
+  </ion-row>
+
+  <ion-row style="margin-top: 10%;margin-left: 40%;" *ngSwitchCase="'receipts'">
+    <div *ngIf="isData">Loading...</div>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngSwitchCase="'receipts'">
+    <ion-fab-button color="primary" routerLink="/material-receipt">
+      <ion-icon class="trashIcon" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngSwitchCase="'issues'" style="margin-right: 20px;">
+ 
+    <ion-fab-button>
+      <ion-icon class="trashIcon" name="remove"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top" style="margin-right: 20px;">
+      <ion-button (click)="onIssueMaterial()">Issue</ion-button>
+    </ion-fab-list>
+
+    <ion-fab-list side="start">
+      <ion-button (click)="onMDIssueMaterial()">MD Issue</ion-button>
+    </ion-fab-list>
+
+  </ion-fab>
+
+</ion-content>

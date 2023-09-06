@@ -1,0 +1,240 @@
+<ion-header>
+  <ion-toolbar color="primary" class="header_toolbar">
+    <ion-title class="title_label">Image Collection</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary" class="tabs_toolbar">
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="dataCollection" value="">
+      <ion-segment-button value="equipment">
+        <ion-label>Equipment Image</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="material">
+        <ion-label>Material Image</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [ngSwitch]="dataCollection">
+
+  <ion-row class="error2"> Note: Please enter all (*) required fields </ion-row>
+
+  <form [formGroup]="collectionEquipmentForm" *ngSwitchCase="'equipment'">   
+
+  <ion-row class="label-text">Equipment Type*</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customequipmentOptions" placeholder="Equipment Type" class=""
+        (ionChange)="selectEquipmentType($event.target.value)" formControlName="eqipment_type">
+        <ion-select-option *ngFor="let s of EquipmentResponse2">{{s.equipment_type}}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-row class="label-text">Equipment Name*</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input style="text-transform: capitalize;" placeholder="Equipment Name" type="text" formControlName="eqipment_name"></ion-input>
+    </ion-item>
+    <span  class="error ion-padding" *ngIf="errorControl2.eqipment_name.touched && errorControl2.eqipment_name.errors?.maxlength">
+      *Please enter below 40 characters
+    </span>
+
+    <ion-row class="label-text">Vehicle Number*</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vehicle Number" formControlName="vehicle_number" type="text" oninput="this.value = this.value.toUpperCase()"
+        ></ion-input>
+    </ion-item>
+    <span  class="error ion-padding" *ngIf="errorControl2.vehicle_number.touched && errorControl2.vehicle_number.errors?.maxlength">
+      *Please enter below 40 characters
+    </span>
+    
+
+    <ion-row class="image-label2">
+      <ion-col class="imageTextHeader">Images With Load </ion-col>
+    </ion-row>
+
+    <p style="color: black; font-size: 13px; font-weight: 500;">
+      <span style="color: red; margin-right: 10px;">Note:</span>Please click the images in the order of FrontView, FuelTank View, BackView, Other SideView
+    </p>
+    
+      <ion-row>
+        <ion-col size="4" style="display: inline-block;" *ngFor="let photo of imagesArray; let i = index">
+          <img [src]="photo" height="80px" width="80px">
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="image-view" >
+        <ion-col (click)="imagesWithLoadUploadClick()">
+          <!-- <img src="{{image}}" onError="src = 'assets/upload.png'"> -->
+          <ion-label style="color: black; font-size: 16px; background-color: #c3c7ca;
+           padding: 8px; border-radius: 5px; font-weight: 550;">Upload Images</ion-label>
+        </ion-col>
+      </ion-row>
+
+    <ion-row class="image-label2">
+      <ion-col class="imageTextHeader">Images Without Load </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <p style="color: black; font-size: 13px; font-weight: 500;">
+        <span style="color: red; margin-right: 10px;">Note:</span>Please click the images in the order of FrontView, FuelTank View, BackView, Other SideView
+      </p>
+      <ion-col size="4" style="display: inline-block;" *ngFor="let photo of imagesArray2; let i = index">
+        <img [src]="photo" height="80px" width="80px">
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="image-view" >
+      <ion-col (click)="imagesWithOutLoadUploadClick()">
+        <!-- <img src="{{image}}" onError="src = 'assets/upload.png'"> -->
+        <ion-label style="color: black; font-size: 16px; background-color: #c3c7ca;
+         padding: 8px; border-radius: 5px; font-weight: 550;">Upload Images</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="label-text">Material Category*</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customCategeryOptions" placeholder="Material Category" class=""
+        (ionChange)="selectCategery($event.target.value)" formControlName="material_category">
+        <ion-select-option *ngFor="let s of mainCategery1">{{s.MaterialCategory}}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-row class="label-text">Material SubCategory*</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customsubCategeryOptions" placeholder="Material Sub Category" class=""
+        (ionChange)="selectSubCategery($event.target.value)"
+        formControlName="materal_subcategory" [(ngModel)]="selectedCategery" interface="alert">
+        <ion-select-option *ngFor="let s of subCategery1" value="{{s.AutoMaterialId}}">{{s.MaterialSubCategory}}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <ion-row class="label-text">Quantity*</ion-row>
+    <ion-row class="qunatity-row">
+      <ion-col size="7">
+        <ion-item class="input-field" lines="none" style="text-align: right;">
+          <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+          !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" formControlName="quantity"
+            (input)="checkValue($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="5">
+        <div class="drop-view">
+          <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics" class=""
+            (ionChange)="selectMetrics($event.target.value)" [(ngModel)]="selectedMetrics" formControlName="material_metrics" >
+            <ion-select-option *ngFor="let s of metrics1">{{s.Metrics}}</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="label-text">Approximate Vehicle Distance From Camera*</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Distance" type="number" formControlName="equipment_dist_cam"></ion-input>
+    </ion-item>    
+  
+    <ion-row style="margin-top: 5px; margin-left: 15px; font-size: 10px; color: red; font-weight: 550; ">
+      Note: Please Enter Distance in Metres*</ion-row>
+  
+    <ion-row class="image-label2">
+      <ion-col>Weighing Bridge Invoice*</ion-col>
+    </ion-row>
+
+    <ion-row class="image-view">
+      <ion-col (click)="InvoicetakePhoto(1)">
+    
+        <ion-label style="color: black; font-size: 16px; background-color: #c3c7ca;
+         padding: 8px; border-radius: 5px; font-weight: 550;">Upload Image</ion-label>
+      </ion-col>
+    </ion-row>
+    <img src={{invoiceImage}} height="80px" width="80px" *ngIf="invoiceImage" style="text-align: center;">
+
+    <ion-row class="label-text">Notes</ion-row>
+    <ion-item class="input-field2" lines="none">
+      <ion-textarea class="capitalize" placeholder="Notes" formControlName="notes"></ion-textarea>
+    </ion-item>
+    <span  class="error ion-padding" *ngIf="errorControl2.notes.touched && errorControl2.notes.errors?.maxlength">
+      *Please enter below 256 characters
+    </span>    
+
+    <ion-button class="submit_btn" expand="block" type="submit" (click)="onSubmitEquipment()">Submit
+    </ion-button>
+    </form>
+
+    
+  <form [formGroup]="collectionMaterialForm" *ngSwitchCase="'material'">
+    <ion-row class="label-text">Material Category*</ion-row>
+      <div class="drop-view">
+        <ion-select style="padding: 10px;" [interfaceOptions]="customCategeryOptions" placeholder="Material Category" class=""
+          (ionChange)="selectCategery($event.target.value)" formControlName="materialcategory">
+          <ion-select-option *ngFor="let s of mainCategery1" >{{s.MaterialCategory}}</ion-select-option>
+        </ion-select>
+      </div>
+
+      <ion-row class="label-text">Material SubCategory*</ion-row>
+      <div class="drop-view">
+        <ion-select style="padding: 10px;" [interfaceOptions]="customsubCategeryOptions" placeholder="Material Sub Category" class=""
+          (ionChange)="selectSubCategery($event.target.value)" formControlName="materalsubcategory" [(ngModel)]="selectedCategery">
+          <ion-select-option *ngFor="let s of subCategery1" value="{{s.AutoMaterialId}}">{{s.MaterialSubCategory}}</ion-select-option>
+        </ion-select>
+      </div>
+
+      <ion-row class="label-text">Quantity *</ion-row>
+      <ion-row class="qunatity-row">
+        <ion-col size="7">
+          <ion-item class="input-field" lines="none" style="text-align: right;">
+            <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+            !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" formControlName="quantity"
+              (input)="checkValue($event)"></ion-input>
+          </ion-item>
+        </ion-col>
+  
+        <ion-col size="5">
+          <div class="drop-view">
+            <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics" class=""
+              (ionChange)="selectMetrics($event.target.value)" [(ngModel)]="selectedMetrics" formControlName="metrics" >
+              <ion-select-option *ngFor="let s of metrics1">{{s.Metrics}}</ion-select-option>
+            </ion-select>
+          </div>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row class="label-text">Notes</ion-row>
+      <ion-item class="input-field2" lines="none">
+        <ion-textarea class="capitalize" placeholder="Notes" formControlName="notes"></ion-textarea>
+      </ion-item>
+      <span  class="error ion-padding" *ngIf="errorControl.notes.touched && errorControl.notes.errors?.maxlength">*Please enter below 256 characters</span>
+  
+      <ion-row class="image-label2">
+        <ion-col>Multiple Images Upload</ion-col>
+      </ion-row>
+  
+      <ion-row class="image-view" >
+        <ion-col (click)="MaterialtakePhoto(1)">
+          <!-- <img src="{{image}}" onError="src = 'assets/upload.png'"> -->
+          <ion-label style="color: black; font-size: 16px; background-color: #c3c7ca;
+           padding: 8px; border-radius: 5px; font-weight: 550;">Upload Images</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 20px;">
+        <ion-col size="4" style="display: inline-block;" *ngFor="let photo of materialImages; let i = index">
+          <img src={{photo}} height="80px" width="80px">
+          <ion-button (click)="materialimagesClose(i)" size="small"
+          class="close" style="width: 10px;height: 20px; background-color: white;
+           border: 1px solid gray;">x</ion-button>
+        </ion-col>
+      </ion-row>      
+
+      <ion-button class="submit_btn" expand="block" type="submit"
+       [disabled]="isDisabled" (click)="onSubmitClick()">Submit
+      </ion-button>
+  </form>
+
+</ion-content>
+

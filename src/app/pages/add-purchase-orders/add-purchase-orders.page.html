@@ -1,0 +1,225 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add Purchase Order</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="addPurchaseOrderForm">
+
+    <ion-row class="label-text">Purchase Order Id *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Purchase Order Id" type="text" oninput="this.value = this.value.toUpperCase()"
+        formControlName="purchase_order_id"></ion-input>
+    </ion-item>
+
+     <span class="error" *ngIf="isSubmitted && errorControl.purchase_order_id.errors?.required">*Please enter purchase order id</span>
+    
+    <ion-row class="label-text">Category *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customCategeryOptions" placeholder="Category" class=""
+        (ionChange)="selectCategery($event.target.value)" formControlName="material_catergory_id">
+        <ion-select-option *ngFor="let s of mainCategery1">{{s.MaterialCategory}}</ion-select-option>
+      </ion-select>
+    </div>
+    <span class="error" *ngIf="isSubmitted && errorControl.material_catergory_id.errors?.required">*Please select category</span> 
+
+    <ion-row class="label-text">Sub Category *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customsubCategeryOptions" placeholder="Sub Category"
+        [(ngModel)]="selectedCategery" (ionChange)="selectSubCategery($event.target.value)" interface="alert"
+        formControlName="material_subcategory_id">
+        <ion-select-option *ngFor="let s of subCategery1" value="{{s.AutoMaterialId}}">{{s.MaterialSubCategory}}
+        </ion-select-option>
+      </ion-select>
+    </div>
+     <span class="error" *ngIf="isSubmitted && errorControl.material_subcategory_id.errors?.required">*Please select subCategery</span> 
+
+    <ion-row class="label-text">Vendor Name *</ion-row>
+    <div class="drop-view">
+      <ion-select style="padding: 10px;" [interfaceOptions]="customVendorOptions" placeholder="Vendor Name"
+        (ionChange)="selectVendors($event.target.value)" formControlName="vendor_id">
+        <ion-select-option *ngFor="let s of vendors1" value="{{s.AutoVendorId}}">{{s.VendorName}}</ion-select-option>
+      </ion-select>
+    </div>
+    <span class="error" *ngIf="isSubmitted && errorControl.vendor_id.errors?.required">*Please enter vendor name</span>
+
+    <ion-row class="label-text">Purchase Order Cost *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Purchase order Cost" type="number" formControlName="PurchaseOrderCost"></ion-input>
+    </ion-item>
+     <span class="error" *ngIf="isSubmitted && errorControl.PurchaseOrderCost.errors?.required">*Please enter purchase order cost</span> 
+
+    <ion-row class="label-text">Purchase Order Date*</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime [max]="voucherDate" displayFormat="DD-MMM-YYYY" placeholder="Purchase Order Date"
+        formControlName="purchaseorder_date" >
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+     <span class="error" *ngIf="isSubmitted && errorControl.purchaseorder_date.errors?.required">*Please enter purchase order date</span> 
+
+    <ion-row style="margin-top: 10px; margin-bottom: -20px;">
+      <ion-col size="7" class="quanity_text"> Quantity*</ion-col>
+      <ion-col size="5" class="metrics_text"> Metrics </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="7">
+        <ion-item class="input-field" lines="none" style="text-align: right;">
+          <ion-input placeholder="Quantity" type="number" min="0" oninput="this.value = 
+            !!this.value && Math.abs(this.value) > 0 ? Math.abs(this.value) : null" (input)="checkValue($event)"
+            formControlName="qunatity_ordered"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="5">
+        <div class="drop-view">
+          <ion-select style="padding: 10px;" [interfaceOptions]="customMetricsOptions" placeholder="Metrics" class=""
+            (ionChange)="selectMetrics($event.target.value)" value={{selectedMaterics}} formControlName="metrics">
+            <ion-select-option value={{selectedMaterics}}>{{selectedMaterics}}</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <span class="error" *ngIf="isSubmitted && errorControl.qunatity_ordered.errors?.required">*Please enter quantity & metrics</span> 
+
+    <ion-row class="label-text">Delivery Location*</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Delivery Location" type="text" formControlName="OrderPlacedLocation" class="text-field">
+      </ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.OrderPlacedLocation.errors?.required">*Please enter order place location received</span>
+
+    <ion-row class="label-text">Estimated Order Delivery Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime [max]="voucherDate" displayFormat="DD-MMM-YYYY" placeholder="Estimated Delivery Date"
+        formControlName="estiamted_order_deliverydate" >
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.estiamted_order_deliverydate.errors?.required">*Please enter estimated delivery date
+      date</span>
+
+      <ion-row class="label-text">Branch</ion-row>
+      <ion-item class="input-field" lines="none">
+        <ion-input placeholder="branch" type="text" formControlName="branch" class="text-field">
+        </ion-input>
+      </ion-item>
+
+      <ion-row class="label-text">Reference Number</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Reference" type="text" formControlName="reference" class="text-field">
+      </ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">Billed Status</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Billed Status" type="text" formControlName="billed_status" class="text-field">
+      </ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">Sub Total</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Sub Total" type="number" (change)="updateTotal()"formControlName="Sub_total"></ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">SGST9</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SGST9" type="number"  (change)="updateTotal()" formControlName="SGST9"></ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">CGST9</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="CGST9" type="number" (change)="updateTotal()" formControlName="CGST9"></ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">Total</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Total" type="number"   formControlName="total" readonly></ion-input>
+    </ion-item>
+
+    <ion-row class="label-text">Notes</ion-row>
+    <ion-item class="input-field2" lines="none">
+      <ion-textarea class="capitalize" placeholder="Notes" formControlName="notes"></ion-textarea>
+    </ion-item>
+
+    <ion-row class="image-label2">
+      <ion-col>PO image upload</ion-col>
+    </ion-row>
+
+    <ion-row class="image-view">
+      <ion-col (click)="takePhoto(1)">
+        <img src={{image}} onError="src = 'assets/upload.png'">
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="image-label" *ngIf="image">
+      <ion-col>Voucher Update</ion-col>
+    </ion-row>
+
+    <div formArrayName="PO">
+      <div *ngFor="let project of addPurchaseOrderForm.get('PO').controls; let i=index">
+        <fieldset>
+        <legend><h4>Item {{i+1}}</h4></legend>
+        <div [formGroupName]="i">
+          <ion-row class="label-text">Item</ion-row>
+          <ion-item class="input-field" lines="none">
+            <ion-input placeholder="Item" type="text" formControlName="item" class="text-field" (input)="checkStatus($event)">
+            </ion-input>
+          </ion-item>
+          <span class="error" *ngIf="PO.controls[i].get('item').errors?.required">*Please enter Item</span> 
+          <ion-row class="label-text">Description</ion-row>
+          <ion-item class="input-field" lines="none">
+            <ion-input placeholder="Description" type="text" formControlName="description" class="text-field">
+            </ion-input>
+          </ion-item>
+
+          <ion-row class="label-text">HSN/SAC</ion-row>
+          <ion-item class="input-field" lines="none">
+            <ion-input placeholder="HSN/SAC" type="number" formControlName="HSN_or_SAC"></ion-input>
+          </ion-item>
+          
+            <ion-row class="label-text">Quantity</ion-row>
+            <ion-item class="input-field" lines="none">
+              <ion-input placeholder="Quantity" type="number" formControlName="quantity"  (input)="checkStatus2($event)"></ion-input>
+            </ion-item>
+            <span class="error" *ngIf="PO.controls[i].get('quantity').errors?.required">*Please enter Item</span> 
+         
+              <ion-row class="label-text">Rate</ion-row>
+              <ion-item class="input-field" lines="none">
+                <ion-input placeholder="Rate" type="number" formControlName="rate" (input)="checkStatus3($event)"></ion-input>
+              </ion-item>
+              <span class="error" *ngIf="PO.controls[i].get('rate').errors?.required">*Please enter Item</span> 
+               
+                <ion-row class="label-text">Amount</ion-row>
+                <ion-item class="input-field" lines="none">
+                  <ion-input placeholder="Amount" type="number" formControlName="amount"></ion-input>
+                </ion-item>
+
+          <span><ion-button (click)="deleteItem(addPurchaseOrderForm.controls.PO, i)">Delete Item</ion-button></span>
+        </div>
+
+        </fieldset>
+       
+      </div>
+      <ion-button  style="margin-top: 20px; float: right; margin-bottom: 20px;"
+      (click)="addNewPurchaseOrder()" [disabled]="isControl">
+      <ion-icon class="trashIcon" name="add"></ion-icon>
+      Add new Item</ion-button>
+      
+    </div>
+
+    <ion-button class="submit_btn" expand="block" type="submit" (click)="onMaterialReceipts()">
+      Purchase Order
+    </ion-button>
+
+  </form>
+
+</ion-content>

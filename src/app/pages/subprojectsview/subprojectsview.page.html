@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">SubProject Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p style="text-align: center;">
+    <ion-label class="card_header">SubProject Details</ion-label>
+  </p>
+  <ion-row class="row_label" style="margin-top: -10px;">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectName}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject ID</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectId}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Description</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectDescription}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Type</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectType}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Address</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectAddress}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject City</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectCity}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject State</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectState}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Country</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.SubProjectCountry}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject ZipCode</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.SubProjectZipCode}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Estimated Value</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.SubProjectEstimatedValue}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject Start Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.SubProjectStartDate | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">SubProject End Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text" >:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" >{{values.SubProjectEndDate | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

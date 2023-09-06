@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Work Progress</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div style="margin-top: -10px;">
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="label_text">Work Component :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="date_text">{{component}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div >
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="label_text">Start Date:</ion-label>&nbsp;
+        <ion-label class="date_text">{{startDate | date:"dd-MMM-YYYY"}}</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="label_text">End Date:</ion-label>&nbsp;
+        <ion-label class="date_text">{{endDate | date:"dd-MMM-YYYY"}}</ion-label>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-row *ngIf="DailyReportDates.length != 0">
+    <ion-col class="workingDays_label" size="12" >
+      Daily Reports
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="CurrentReportDate">
+    <ion-button class="submit_btn2" expand="block" (click)="onAddButtonClick()">
+      <label>{{CurrentReportDate}}</label>
+      <ion-icon style="margin-left: 160px;" name="add-outline"></ion-icon>
+    </ion-button>
+  </ion-row>
+  
+<div *ngFor="let date of dates3; let i = index">
+
+    <ion-button class="submit_btn" expand="block" 
+      (click)="onViewClick(date)">
+      <label>{{date}}</label>
+      <ion-icon style="margin-left: 160px;" class="eye_icon" name="eye-outline"></ion-icon>
+    </ion-button>
+  </div>
+  
+  <ion-row style="margin-top: 50%;margin-left: 32%;">
+    <div *ngIf="DailyReportDates?.length === 0">No records found</div>
+  </ion-row>
+
+  <ion-row style="margin-top: 10%;margin-left: 40%;">
+    <div *ngIf="isData">Loading...</div>
+  </ion-row>
+  
+  <ion-button class="workBtn" (click)="onAddButtonClick()" [disabled]="isAddWorkDisbaled">Add daily status</ion-button>
+
+</ion-content>

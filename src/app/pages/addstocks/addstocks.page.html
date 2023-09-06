@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add List</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">  
+
+  <ion-row class="menu-row">
+   
+    <ion-col size="3.8" class="menu-col" style="justify-content: center;  margin-left: 12%; padding: 8px;" (click)="onAddprojectsClicked()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/approval.png"  height="45px" width="45px" style="margin-left: 20px;" ><br>
+      <ion-label style="color: black;font-size: 12px; margin-left: 10px;">Add Projects</ion-label>
+    </div>
+    </ion-col>
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; margin-left: 10%;" (click)="onAddsubprojectsClicked()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/purchaseOrders.png"  height="45px" width="45px" style="margin-left: 20px;"><br>
+      <ion-label style="color: black;font-size: 12px; text-align: center;">Add SubProjects</ion-label><br>
+    </div>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="menu-row">
+   
+    <ion-col size="3.8" class="menu-col" style="justify-content: center;  margin-left: 12%; padding: 8px;" (click)="onAddMaterialClicked()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/approval.png"  height="45px" width="45px" style="margin-left: 20px;" ><br>
+      <ion-label style="color: black;font-size: 12px; margin-left: 10px;">Add Material</ion-label>
+    </div>
+    </ion-col>
+
+    <ion-col size="3.8" class="menu-col" style="justify-content: center; margin-left: 10%;" (click)="onAddVendorsClicked()">
+      <div  style="justify-content: center;">
+        <img src="../../../assets/purchaseOrders.png"  height="45px" width="45px" style="margin-left: 20px;"><br>
+      <ion-label style="color: black;font-size: 12px; text-align: center;">Add Vendor</ion-label><br>
+    </div>
+    </ion-col>
+
+  </ion-row>
+</ion-content>

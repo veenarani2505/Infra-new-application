@@ -1,0 +1,68 @@
+ion-segment-button {
+    text-transform: none;
+}  
+.title_label {
+    font-size: 18px;
+}
+.left_text {
+    color: black;
+    font-size: 13px;
+    font-weight: 600;
+}
+.fab[mini] {
+    margin: 0px 8px;
+    width: 15px;
+}
+.fab-list {
+    margin-left: -50px;
+    margin-top: 20px;
+}
+.fab-card {
+    border-radius: 0px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+}
+.acpt_btn {
+    --background-color: var(--green);
+    text-transform: none;
+}
+.acpt_btnView {
+    text-align: center;
+}
+.dngr_btnView {
+    text-align: center;
+}
+.view_text {
+    color: black;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+}
+.header_toolbar {
+    margin-bottom: -10px;
+    --min-height: 40px !important;
+}
+.tabs_toolbar {
+    margin-top: -10px;
+    --min-height: 40px !important;
+}
+.dngr_btn {
+    text-transform: none;
+}
+.project_label {
+    padding-right: 20px;
+    font-size: 12px;
+}
+.title_label {
+    font-size: 18px;
+    margin-left: -20px;
+}
+.image-view{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+.image-label{    
+    text-align: center;
+}

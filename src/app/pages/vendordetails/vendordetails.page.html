@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Vendor Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p style="text-align: center;">
+    <ion-label class="card_header">Vendor Details</ion-label>
+  </p>
+  <ion-row class="row_label" style="margin-top: -10px;">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.VendorName}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor ID</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.VendorId}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor Description</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.VendorDescription}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor Type</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.VendorType}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor Location</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.VendorLocation}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

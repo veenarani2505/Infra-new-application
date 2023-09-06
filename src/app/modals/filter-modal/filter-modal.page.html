@@ -1,0 +1,54 @@
+<ion-content class="ion-padding">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button  (click)="dismissModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+
+  
+  
+ <ion-row class="date_row">
+    <ion-col size="6" class="from-to-date-time">From Date</ion-col>
+    <ion-col size="6" class="from-to-date-time">To Date</ion-col>
+
+    <ion-col size="6">
+      <ion-item class="input-field">
+        <ion-datetime
+          displayFormat="DD-MMM-YYYY"
+          [(ngModel)]="f_date"
+          placeholder="From Date" class="date"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item class="input-field">
+        <ion-datetime
+          displayFormat="DD-MMM-YYYY"
+          [(ngModel)]="to_date"
+          [max]="curDate"
+          placeholder="To Date" class="date"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row class="label-text">Material Name</ion-row> 
+
+  <ion-item (click)="openSelector(selector)" class="drop-view">
+    
+    <ion-select #selector style="pointer-events: none;" [interfaceOptions]="customAlertOptions" class = 'lol'
+     multiple="true" [value]="basket" [(ngModel)]="selectedAll"  (ionChange)="selectCategery($event.target.value)"
+      placeholder="All Material">
+      
+    <ion-select-option *ngFor="let s of response; index as i" value="{{s.AutoMaterialId}}">
+      {{s.MaterialSubCategory}}</ion-select-option>
+  </ion-select>
+  </ion-item>
+
+  <ion-button class="submit_btn" expand="block" type="submit" (click)="onSubmit()">
+    Submit
+  </ion-button>
+</ion-content>
+
+<!-- [compareWith]="comparematerials" -->

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Create Work</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-row class="label-text">Sub Project Name*</ion-row>
+  <div class="drop-view">
+    <ion-select style="padding: 10px;" [interfaceOptions]="customSubProjectsOptions" placeholder="Sub Project Name"
+      class="" (ionChange)="selectSubProjects($event.target.value)" [(ngModel)]="sub_project_id">
+      <ion-select-option *ngFor="let s of subProjectsData" value={{s.AutoSubProjectId}}>{{s.SubProjectName}}
+      </ion-select-option>
+    </ion-select>
+  </div>
+
+  <ion-row class="label-text">Work Component*</ion-row>
+  <div class="drop-view">
+    <ion-select [(ngModel)]="selectedWorkCompletedId" style="padding: 10px;max-width: 100% !important;"
+      [interfaceOptions]="customWorkCompletedOptions" placeholder="Work Component" class="myselect"
+      (ionChange)="selectworkComplted($event.target.value)" [(ngModel)]="work_component_id">
+      <ion-select-option *ngFor="let s of workCompleted2" value={{s.id}}>{{s.work_component}}</ion-select-option>
+    </ion-select>
+  </div>
+
+  <ion-row class="label-text">Start Date *</ion-row>
+  <ion-item class="input-field" lines="none">
+    <ion-datetime displayFormat="DD-MMM-YYYY" placeholder="DD-MMM-YYYY" [(ngModel)]="frommindate"
+      [max]="2099" (ngModelChange)="getFromDate(frommindate)">
+    </ion-datetime>
+    <ion-icon name="calendar" slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-row class="label-text">End Date *</ion-row>
+  <ion-item class="input-field" lines="none">
+    <ion-datetime displayFormat="DD-MMM-YYYY" placeholder="DD-MMM-YYYY" [min]="frommindate" [max]="2099"
+      [(ngModel)]="to_date" (ngModelChange)="gettoDate(to_date)">
+    </ion-datetime>
+    <ion-icon name="calendar" slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-button class="submit_btn" expand="block" type="submit"
+  [disabled]="!sub_project_id || !work_component_id || !frommindate || !to_date "
+  (click)="onSubmitWorkForm(sub_project_id,work_component_id,frommindate,to_date)">
+  Submit
+</ion-button>
+
+</ion-content>

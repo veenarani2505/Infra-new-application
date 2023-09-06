@@ -1,0 +1,62 @@
+.project_label {
+    padding-right: 20px;
+    font-size: 12px;
+}
+.title_label {
+    font-size: 18px;
+    margin-left: -20px;
+}
+.input-field {
+    border-radius: 8px;
+    border: 2px solid var(--ion-color-inputBorder);
+    margin-top: 15px;
+    height: 50px;
+}
+.drop-view {
+    border: 2px solid var(--ion-color-inputBorder);
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-left: 5px;
+    border-radius: 8px;
+    height: 50px;
+    margin-top: 1rem;
+}
+.label-text {
+    margin-bottom: -12px;
+    margin-left: 6px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+} 
+.submit_btn {
+    --box-shadow: none;
+    --border-radius: 10px;
+    height: 48px;
+    font-size: 1rem;
+    color: var(--ion-color-white);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    text-transform: initial;
+}
+.from-to-date-txt {
+    font-size: 16px;
+  
+    font-family: regular;
+}
+.calender-time-img {
+    height: 25px;
+    width: 25px;
+} 
+.inputbox-admin {
+    border: 1px solid black;
+    color: red;
+    height: 40px;
+    font-family: regular;
+    font-size: 16px;
+    padding-left: 2%;
+    padding-right: 0px;
+    border-radius: 5px;
+    margin-top: 1%;
+}  

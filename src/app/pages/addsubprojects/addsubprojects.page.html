@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add SubProjects</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding"> 
+
+  <form [formGroup]="collectAddSubProjectsForm">
+
+    <ion-row class="label-text">Project</ion-row>
+    <div class="drop-view">
+      <ion-select placeholder="Project Name" class="select-field" [interfaceOptions]="customProjectsOptions"
+         (ionChange)="selectProjects($event.target.value)"   formControlName="AutoProjectId">
+        <ion-select-option *ngFor="let s of projectsData; index as i" [value]="s.AutoProjectId">{{s.ProjectName}}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <span class="error" *ngIf="isSubmitted && errorControl.AutoProjectId.errors?.required">*Please Enter Project</span>
+
+    <ion-row class="label-text">SubProject Id *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Id" type="text" formControlName="SubProjectId" class="text-field2"></ion-input>
+    </ion-item>
+
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectId.errors?.required">*Please Enter SubProject Id</span>
+
+    <ion-row class="label-text">SubProject Name *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Name" type="text" formControlName="SubProjectName" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectName.errors?.required">*Please Enter SubProject Name</span>
+
+    <ion-row class="label-text">SubProject Description *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Description" type="text" formControlName="SubProjectDescription" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectDescription.errors?.required">*Please Enter SubProject Description</span>
+
+    <ion-row class="label-text">subProject Type *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Type" type="text" formControlName="SubProjectType" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectType.errors?.required">*Please Enter SubProject Type</span>
+
+    <ion-row class="label-text">SubProject Address *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Address" type="text" formControlName="SubProjectAddress" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectAddress.errors?.required">*Please Enter SubProject Address</span>
+
+    <ion-row class="label-text">SubProject City *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject City" type="text" formControlName="SubProjectCity" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectCity.errors?.required">*Please Enter SubProject city</span>
+
+    <ion-row class="label-text">SubProject State *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject State" type="text" formControlName="SubProjectState" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectState.errors?.required">*Please Enter SubProject State</span>
+
+    <ion-row class="label-text">SubProject Country *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Country" type="text" formControlName="SubProjectCountry" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectCountry.errors?.required">*Please Enter SubProject Country</span>
+
+    <ion-row class="label-text">SubProject ZipCode *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject ZipCode" type="tel" maxlength="6" formControlName="SubProjectZipCode" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectZipCode.errors?.required">*Please Enter SubProject Zip Code</span>
+
+    <ion-row class="label-text">SubProject Estimated Value *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="SubProject Estimated Value" type="number" formControlName="SubProjectEstimatedValue" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectEstimatedValue.errors?.required">*Please Enter SubProject Estimated Value</span>
+
+    <ion-row class="label-text">SubProject Start Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime   displayFormat="DD-MMM-YYYY" placeholder="SubProject Start Date" formControlName="SubProjectStartDate"
+      [(ngModel)]="frommindate"  [max]="2099" (ngModelChange)="getFromDate(frommindate)">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectStartDate.errors?.required">*Please Enter SubProject Start Date</span>
+
+      <ion-row class="label-text">SubProject End Date *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-datetime  displayFormat="DD-MMM-YYYY" [max]="2099" placeholder="SubProject End Date" formControlName="SubProjectEndDate"
+      [min]="frommindate" [(ngModel)]="to_date" (ngModelChange)="gettoDate(to_date)">
+      </ion-datetime>
+      <ion-icon name="calendar" slot="end"></ion-icon>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.SubProjectEndDate.errors?.required">*Please Enter SubProject End Date</span>
+
+    <ion-button class="submit_btn" expand="block" type="submit" [disabled]="isDisabled" (click)="onAddSubProjects()">
+      Add Sub Project
+    </ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Change Company</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="updateComanyDetailsForm">
+
+  <ion-row class="label-text">Company Name</ion-row>
+  <div class="drop-view">
+    <ion-select placeholder="company name" class="select-field" 
+      (ionChange)="UpdateCompany($event.target.value)" formControlName="company_id" [value]="company_id">
+      <ion-select-option *ngFor="let s of comp_response; index as i" [value]="s.company_id">{{s.company_name}}
+      </ion-select-option>
+    </ion-select>
+  </div>
+
+  <ion-row class="label-text">Project Name</ion-row>
+  <div class="drop-view">
+    <ion-select placeholder="Project Name" class="select-field"
+      (ionChange)="selectProjects($event.target.value)" formControlName="project_id" [value]="project_id">
+      <ion-select-option *ngFor="let s of projectsData; index as i" [value]="s.project_id">{{s.ProjectName}}
+      </ion-select-option>
+    </ion-select>
+  </div>
+
+  <ion-row class="label-text">User Role</ion-row>
+  <div class="drop-view">
+    <ion-select placeholder="User Role" class="select-field" [interfaceOptions]="customUserRolesOptions" 
+      (ionChange)="selectRole($event.target.value)"  formControlName="roleId"  [value]="roleId">
+      <ion-select-option *ngFor="let s of roles_response; index as i" [value]="s.role_id">{{s.RoleName}}</ion-select-option>
+    </ion-select>
+  </div>
+
+</form>
+
+  <ion-button class="submit_btn" *ngIf="comp_response?.length" type="submit" expand="block" (click)="submit()">Submit
+  </ion-button>
+
+</ion-content>

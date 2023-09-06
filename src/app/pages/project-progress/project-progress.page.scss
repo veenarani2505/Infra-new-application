@@ -1,0 +1,195 @@
+.project_label {
+    padding-right: 20px;
+    font-size: 12px;
+}
+.title_label {
+    font-size: 18px;
+    margin-left: -20px;
+}
+.input-field {
+    border-radius: 8px;
+    border: 2px solid var(--ion-color-inputBorder);
+    margin-top: 15px;
+    height: 50px;
+}
+.input-field2{
+    border-radius: 8px;
+    border:  2px solid var(--ion-color-inputBorder);
+    border-radius: 8px;
+    margin-top: 15px;
+}
+.drop-view {
+    border: 2px solid var(--ion-color-inputBorder);
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-left: 5px;
+    border-radius: 8px;
+    height: 50px;
+    margin-top: 1rem;
+}
+.label-text {
+    margin-bottom: -12px;
+    margin-left: 6px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+.submit_btn {
+    --box-shadow: none;
+    --border-radius: 10px;
+    height: 40px;
+    font-size: 1rem;
+    color: var(--ion-color-white);
+
+
+    text-transform: initial;
+}
+.mixedBtn-div{
+    text-align: center;
+}
+.steelBtn-div{
+    text-align: center;
+}
+.equpment-div{
+    text-align: center;
+}
+.close {
+    position: absolute;
+    z-index: 1;
+    right: 38px;
+    top: 2px;
+    height: 15px;
+    color: red;
+    width: 8px;
+}
+.quanity_text {
+    padding-left: 6px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}  
+.metrics_text {
+    padding-left: 10px;
+    font-size: 14px;
+    color: var(--ion-color-color_14);
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+.cumMetrics_label{
+    margin-left: 5px;
+   
+}
+.footer {
+    position: initial;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+}
+.bodycontainer{
+    font-size: 40px;
+}
+.left_text{
+    text-align: left;
+    font-size: 14px;
+    font-weight: 550;
+    color: black;
+    font-style: normal;
+}
+.label_text{
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+    font-weight: bold;
+}
+.date_text{
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+  
+}
+.uploadBtn{
+    margin-top: 15px;
+    text-transform: none;
+    width: 150px;
+    margin-left: 5px;
+    --font-size: 14px;
+    font-weight: 500;
+    --border-radius: 8px;
+ 
+}
+.deleteBtn{
+    float: left;
+    margin-top: 10px;
+    text-transform: none;
+    width: 90px;
+}
+.saveBtn{
+    width: 90px;
+    float: right;
+    margin-top: 10px;
+    text-transform: none;
+}
+.error{
+    color: var(--ion-color-danger); 
+    margin-top: -10px;
+}
+.red { color: red; }
+.upload-div{
+    text-align: right;
+}
+.error2{
+    margin-top: 5px; 
+    margin-left: 5px; 
+    font-size: 10px; color: red; 
+    font-weight: 550;
+}
+.text-field{
+    text-transform: capitalize;
+}
+.capitalize::first-letter {
+    text-transform: uppercase;
+}
+.footer{
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background-color:white;
+}
+.card-header-md,
+.card-header-ios {
+    padding: 0px;
+    align-items: center;
+    display: grid;
+}
+card-header-md active,
+card-header-ios active {
+    height: 217px !important;
+    padding: 0px;
+    align-items: center;
+    display: grid;
+}
+.arrow-icon {
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    font-size: large;
+    color: black;
+}
+.horizontalline {
+  border-bottom: 1px solid grey;
+  height: 1px;
+  width: 100%;
+}
+.card_header{
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  
+}

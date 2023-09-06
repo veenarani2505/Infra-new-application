@@ -1,0 +1,57 @@
+.project_label {
+    padding-right: 20px;
+    font-size: 12px;
+}  
+.title_label {
+    font-size: 18px;
+    margin-left: -20px;
+}  
+.left_text {
+    font-size: 12px;
+    color: black;
+    font-weight: 550;
+}  
+.label_text {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}  
+.right_arrow_icon {
+    height: 23px;
+    width: 23px;
+}  
+.left_label {
+    color: black;
+    font-size: 14px;
+    font-weight: 550;
+}
+.right_label {
+    font-size: 14px;
+}  
+.card {
+    border: 1px solid var(--ion-color-inputBorder);
+    border-radius: 10px;
+}
+.addBtn {
+    text-transform: none;
+    --font-size: 14px;
+    font-weight: 500;
+    --border-radius: 8px;
+    position: fixed;
+    top: 90%;
+    left: 60%;
+}
+.fab[mini] {
+    margin: 0px 8px;
+    width: 15px;
+}
+.fab-list {
+    margin-left: -50px;
+    margin-top: 20px;
+}
+.fab-card {
+    border-radius: 0px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px;
+} 

@@ -1,0 +1,74 @@
+.date_div{
+    margin-top: 10px; 
+}
+.label_text{
+    color: black;
+    font-size: 16px;
+    font-style: normal;
+    letter-spacing: 0.5;   
+}
+.date_label{
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    // border: 1px solid grey;
+    border-radius: 7px;
+    font-weight: 550;
+}  
+.project_label{
+    padding-right: 20px;
+    font-size: 12px;  
+}  
+.title_label{
+    font-size: 18px;
+     margin-left: -20px;
+}
+.submit_btn {
+    --border-radius: 7px;
+    color: var(--ion-color-white);
+    text-transform: initial;
+    // --background: #28bb37;
+    --background: #338ba8;
+    // 28bb37
+    // 0869AE
+}
+.submit_btn2 {
+    --border-radius: 7px;
+    color: var(--ion-color-white);
+    text-transform: initial;
+   // --background: #0869AE;
+  //  --background: #338ba8;
+   --background: #28bb37;
+    // 28bb37
+    // 0869AE
+
+    // #338BA8
+}
+.label_text{
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+    font-weight: bold;
+}
+.date_text{
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+}
+.workingDays_label{
+    font-size: 16px; 
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.workBtn{
+    position: fixed;
+    top: 90%;
+    left: 54%;
+    text-transform: none;
+    --border-radius: 7px;
+}

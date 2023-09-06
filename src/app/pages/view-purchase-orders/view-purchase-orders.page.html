@@ -1,0 +1,217 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Purchase Orders Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-row class="row_label" style="margin-top: -10px;">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Category</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.material_catergory_id}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Sub category</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.MaterialSubCategory}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Purchase order ID</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.purchase_order_id}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Quantity</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.qunatity_ordered | currency:'USD':''}} {{values.metrics}}</ion-text>
+    </ion-col>
+  </ion-row>  
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Purchase order cost</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.PurchaseOrderCost}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Purchase order date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.purchaseorder_date | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Est. delivery date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.estiamted_order_deliverydate | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Po raised by</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.PO_raised_by}}</ion-text>
+    </ion-col>
+  </ion-row>
+ 
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Order placed location</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.OrderPlacedLocation}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Notes</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.notes}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Status</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.billed_status}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Voucher</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text" >:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" *ngIf="!isImage">No voucher attached</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="image-view" *ngIf="isImage">
+    <ion-col>
+      <img [src]="image" (click)="openModal(image)">
+    </ion-col>
+  </ion-row>
+
+  <h1 class="item-orders-heading" *ngIf="isDispaly">Item Orders</h1>
+
+  <ion-card *ngFor="let val of itemsResponse; let i=index">
+    <ion-card-header>
+        <span style="color:blue; text-transform: capitalize; font-size: 18px;">Item Orders{{i+1}}</span>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+          <ion-col size="6">
+       <ion-label class="left_label">Item</ion-label>
+          </ion-col>
+          <ion-col size="0.5">:</ion-col>
+          <ion-col size="5.5">{{val.item}}</ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col size="6">
+     <ion-label class="left_label">Descrption</ion-label>
+        </ion-col>
+        <ion-col size="0.5">:</ion-col>
+        <ion-col size="5.5">{{val.description}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+   <ion-label class="left_label">HSN/SAC</ion-label>
+      </ion-col>
+      <ion-col size="0.5">:</ion-col>
+      <ion-col size="5.5">{{val.HSN_or_SAC}}</ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+ <ion-label class="left_label">Quantity</ion-label>
+    </ion-col>
+    <ion-col size="0.5">:</ion-col>
+    <ion-col size="5.5">{{val.quantity}}</ion-col>
+</ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+  <ion-label class="left_label">Amount</ion-label>
+    </ion-col>
+    <ion-col size="0.5">:</ion-col>
+    <ion-col size="5.5">{{val.amount }}</ion-col>
+  </ion-row>
+  
+  <ion-row>
+    <ion-col size="6">
+  <ion-label class="left_label">Rate</ion-label>
+    </ion-col>
+    <ion-col size="0.5">:</ion-col>
+    <ion-col size="5.5">{{val.rate}}</ion-col>
+  </ion-row>
+    </ion-card-content>
+    </ion-card>
+ 
+</ion-content>

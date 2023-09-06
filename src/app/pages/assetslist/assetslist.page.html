@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Assets</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+  <ion-card style="border: 1px solid grey;" *ngFor="let data of response"  (click)="onViewDetails(data)">
+    <ion-row>
+      <ion-col size="10">
+        <ion-row>
+          <ion-col size="5">
+            <div class="left_text">Asset Type </div>
+          </ion-col>
+          <ion-col size="1">
+            <div class="left_text">:</div>
+          </ion-col>
+          <ion-col size="6">
+            <div>{{data.asset_type}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            <div class="left_text">Asset Name </div>
+          </ion-col>
+          <ion-col size="1">
+            <div class="left_text">:</div>
+          </ion-col>
+          <ion-col size="6">
+            <div>{{data.equipment_type}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="data.asset_type == 'Owned'">
+          <ion-col size="5">
+            <div class="left_text">Vendor Name</div>
+          </ion-col>
+          <ion-col size="1">
+            <div class="left_text">:</div>
+          </ion-col>
+          <ion-col size="6">
+            <div>{{data.owned_vendor_name}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="data.asset_type == 'Owned'">
+          <ion-col size="5">
+            <div class="left_text">Invoice Number </div>
+          </ion-col>
+          <ion-col size="1">
+            <div class="left_text">:</div>
+          </ion-col>
+          <ion-col size="6">
+            <div>{{data.owned_invoice_number}}</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="data.asset_type == 'Lease'">
+          <ion-col size="5">
+            <div class="left_text">Vendor Name</div>
+          </ion-col>
+          <ion-col size="1">
+            <div class="left_text">:</div>
+          </ion-col>
+          <ion-col size="6">
+            <div>{{data.leased_vendor_name}}</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="data.asset_type == 'Lease'">
+          <ion-col size="5">
+            <div class="left_text">Invoice Number</div>
+          </ion-col>
+          <ion-col size="1">
+            <div class="left_text">:</div>
+          </ion-col>
+          <ion-col size="6">
+            <div>{{data.leased_invoice_number}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+   
+  </ion-card>
+
+  <ion-row style="margin-top: 50%;margin-left: 32%;">
+    <div *ngIf="response?.length === 0">No records found</div>
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/assets">
+      <ion-icon class="trashIcon" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Add Vendor</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="Vendor_label">{{Vendorname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="collectAddVendorForm">
+    <ion-row class="label-text">Vendor Id *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vendor Id" type="text" formControlName="VendorId" class="text-field2"></ion-input>
+    </ion-item>
+
+    <span class="error" *ngIf="isSubmitted && errorControl.VendorId.errors?.required">*Please Enter Vendor Id</span>
+
+    <ion-row class="label-text">Vendor Name *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vendor Name" type="text" formControlName="VendorName" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.VendorName.errors?.required">*Please Enter Vendor Name</span>
+
+    <ion-row class="label-text">Vendor Description *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vendor Description" type="text" formControlName="VendorDescription" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.VendorDescription.errors?.required">*Please Enter Vendor Description</span>
+
+    <ion-row class="label-text">Vendor Location *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vendor Location" type="text" formControlName="VendorLocation" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.VendorLocation.errors?.required">*Please Enter Vendor Location</span>
+
+    <ion-row class="label-text">Vendor Type *</ion-row>
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Vendor Type" type="text" formControlName="VendorType" class="text-field2"></ion-input>
+    </ion-item>
+    <span class="error" *ngIf="isSubmitted && errorControl.VendorType.errors?.required">*Please Enter Vendor Address</span>
+
+    <ion-button class="submit_btn" expand="block" type="submit" [disabled]="isDisabled" (click)="onAddVendors()">
+      Add Vendor
+    </ion-button>
+  </form>
+
+</ion-content>

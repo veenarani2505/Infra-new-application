@@ -1,0 +1,251 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title_label">Asset Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text slot="end" class="project_label">{{projectname}}</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-row class="row_label" style="margin-top: -10px;">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Asset Type</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.asset_type}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Asset Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.equipment_type}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Owned'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Procure Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.procure_date | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Owned'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Procured Cost</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.owned_bill_amount}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Invoice Number</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.leased_invoice_number}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Start Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.leased_start_date | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">End Date</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.leased_end_date | date:"dd-MMM-YYYY"}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label"  *ngIf="values.asset_type == 'Owned'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Invoice Number</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text">{{values.owned_invoice_number}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label"   *ngIf="values.asset_type == 'Owned'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vehicle Number</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.owned_vehicle_number}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label"  *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Current Month</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_current_month}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">TDS</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_tds}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_vendor_name}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Owned'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Vendor Name</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.owned_vendor_name}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label"  *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Proposed Payment by Site</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_Proposed_payment_by_site}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label"  *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Payment Made</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_payment_made}}</ion-text>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Outstanding Amount</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_outstanding_amount}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Total Bill Amount</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_total_bill_amount}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Notes</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.notes}}</ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="row_label" *ngIf="values.asset_type == 'Lease'">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Approved By</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text">:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" style="text-transform: capitalize;">{{values.leased_Approved_by_GSH}}</ion-text>
+    </ion-col>
+  </ion-row>
+   <ion-row class="row_label">
+    <ion-col size="5.5">
+      <ion-text class="left_text">Voucher</ion-text>
+    </ion-col>
+    <ion-col size="1">
+      <ion-text class="left_text" >:</ion-text>
+    </ion-col>
+    <ion-col size="5.5">
+      <ion-text class="right_text" *ngIf="!isImage">No voucher attached</ion-text>
+    </ion-col>
+  </ion-row> 
+
+  <ion-row class="image-view" *ngIf="isImage">
+    <ion-col>
+      <img [src]="image" (click)="openModal(image)">
+    </ion-col>
+  </ion-row> 
+
+</ion-content>

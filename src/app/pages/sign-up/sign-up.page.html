@@ -1,0 +1,71 @@
+<ion-content class="ion-padding">
+
+  <h1>Create Account,</h1>
+  <h3>Sign up to get started!</h3>
+
+  <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+  
+  <ion-item class="input-field" lines="none" >
+    <ion-input placeholder="Full Name" type="text"  formControlName="fullName" class="text-field" ></ion-input>
+
+    <!-- (keypress)="letterOnly($event)" -->
+  </ion-item>
+  <span  class="error ion-padding" *ngIf="errorControl.fullName.touched && errorControl.fullName.errors?.required">
+    *Please enter full name
+  </span> 
+  <span  class="error ion-padding" *ngIf="errorControl.fullName.touched && errorControl.fullName.errors?.minlength">
+    *Please enter Atleast 2 characters
+  </span>
+  <span  class="error ion-padding" *ngIf="errorControl.fullName.touched && errorControl.fullName.errors?.maxlength">
+    *Please enter below 20 characters
+  </span>
+  <span  class="error ion-padding"
+   *ngIf="errorControl.fullName.touched && errorControl.fullName.errors?.cannotContainSpace">
+    *Password cannot contain space</span>
+
+    <div no-lines *ngIf="namevalidationcnd" class="error">
+      <div class="error">{{namevalidation}}</div>
+    </div>
+  
+  <ion-item class="input-field" lines="none" >
+    <ion-input placeholder="Email Id" type="email" formControlName="userEmail"></ion-input>
+  </ion-item>
+
+  <span  class="error ion-padding" *ngIf="errorControl.userEmail.touched && errorControl.userEmail.errors?.required">
+    *Please enter email Id
+  </span>
+  <span  class="error ion-padding" *ngIf="errorControl.userEmail.touched && errorControl.userEmail.errors?.pattern">
+    *Please provide valid email id.
+  </span>
+
+  <ion-item class="input-field" lines="none" >
+    <ion-input placeholder="Phone Number" type="tel" maxlength="10" formControlName="userMobileNumber" (keydown.space)="$event.preventDefault();"></ion-input>
+  </ion-item>
+
+  <span  class="error ion-padding"
+   *ngIf="errorControl.userMobileNumber.touched && errorControl.userMobileNumber.errors?.required">
+    *Please enter 10 digits mobile number
+  </span>
+  <span  class="error ion-padding"
+   *ngIf="errorControl.userMobileNumber.touched && errorControl.userMobileNumber.errors?.pattern">
+    *Please enter Valid Mobile Number
+  </span>
+
+
+  <ion-item class="input-field" lines="none">
+    <ion-input placeholder="Password" type="{{showPass ? 'text' : 'password'}}"  formControlName="userPassword" ></ion-input>
+    <ion-icon item-end slot="end" name="{{showPass ? 'eye' : 'eye-off'}}" (click)="showPass=!showPass"></ion-icon>
+  </ion-item>
+
+  <span  class="error ion-padding" *ngIf="errorControl.userPassword.touched && errorControl.userPassword.errors?.required">
+    *Please enter password
+  </span>
+
+  <span  class="error ion-padding" *ngIf="errorControl.userPassword.touched && errorControl.userPassword.errors?.cannotContainSpace">*Password cannot contain space</span>  
+ 
+  <ion-button class="submit_btn" expand="block" size="small" type="submit" (click)="onRegister()">Register</ion-button>
+  
+  <p class="footer-text">I'm already a member, <a routerLink="/sign-in">Sign In</a></p>  
+</form>
+
+</ion-content> 

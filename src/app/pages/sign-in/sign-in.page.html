@@ -1,0 +1,35 @@
+<ion-content class="ion-padding">
+
+  <div class="logo-div">
+    <img src="assets/logo.jpg" class="logo-img" />
+  </div>
+  <div class="logo-text">
+    <h1 class="infra-text">Infra<span class="structrue-text">Structure</span></h1>
+  </div>
+
+  <form [formGroup]="loginForm">
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Email Id/Mobile Number" maxlength="30" type="email" formControlName="userEmail"></ion-input>
+    </ion-item>
+
+    <span class="error ion-padding" *ngIf="errorControl.userEmail.touched && errorControl.userEmail.errors?.required">
+      *Please enter email Id or mobile number
+    </span>
+
+    <ion-item class="input-field" lines="none">
+      <ion-input placeholder="Password" maxlength="16" type="{{showPass ? 'text' : 'password'}}" formControlName="Password">
+      </ion-input>
+      <ion-icon item-end slot="end" name="{{showPass ? 'eye' : 'eye-off'}}" (click)="showPass=!showPass"></ion-icon>
+    </ion-item>
+
+    <span class="error ion-padding" *ngIf="errorControl.Password.touched && errorControl.Password.errors?.required">
+      *Please enter password
+    </span>
+
+    <ion-button class="submit_btn" expand="block" size="small" type="submit" (click)="loginButtonPressed()">Login</ion-button>
+
+  </form>
+
+  <p class="footer-text">I'm new user, <a routerLink="/sign-up">Sign Up</a></p>
+
+</ion-content>
